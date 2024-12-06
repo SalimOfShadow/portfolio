@@ -26,10 +26,11 @@ body {
   font-family: 'Share Tech Mono', monospace;
 }
 .profile-container {
+  display: fixed;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-right: 200px;
+  width: 200px;
+  margin: auto
 }
 @media (max-width: 1440px) {
   .glowing-txt {

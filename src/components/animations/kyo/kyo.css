@@ -1,4 +1,7 @@
 .kyo-character {
+  position: absolute;
+  right: 1;
+  top: 2;
   width: 200px;
   max-width: 200px;
   height: 200px;
