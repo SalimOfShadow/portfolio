@@ -3,12 +3,11 @@ import React, { useEffect } from 'react';
 import { useCharacter } from '../../../contexts/CharacterContext'; // Importing the custom hook
 import runningGif from '../../../assets/characters-gif/kyo-running.gif';
 import standingGif from '../../../assets/characters-gif/kyo-winpose.gif';
-import winposeGif from '../../../assets/characters-gif/kyo-winpose.gif';
+import neomaxGif from '../../../assets/characters-gif/kyo-neomax.gif';
 import './kyo.css';
 import { motion } from 'framer-motion';
 
 export const CharacterKyo = ({ state, setState }) => {
-
   // Function to determine the correct GIF based on the state
   const getGif = () => {
     switch (state) {
@@ -16,8 +15,8 @@ export const CharacterKyo = ({ state, setState }) => {
         return runningGif;
       case 'standing':
         return standingGif;
-      case 'winpose':
-        return winposeGif;
+      case 'neomax':
+        return neomaxGif;
       default:
         return standingGif; // Fallback to standing GIF
     }
@@ -25,7 +24,6 @@ export const CharacterKyo = ({ state, setState }) => {
 
   // Log whenever the characterState changes
   useEffect(() => {
-
     console.log('Updated characterState:', state); // Logs the updated state
   }, [state]); // This will run when characterState changes
 
@@ -37,7 +35,7 @@ export const CharacterKyo = ({ state, setState }) => {
       <div>
         <button onClick={() => setState('standing')}>Standing</button>
         <button onClick={() => setState('running')}>Running</button>
-        <button onClick={() => setState('winpose')}>Winpose</button>
+        <button onClick={() => setState('neomax')}>NeoMax</button>
       </div>
     </div>
   );

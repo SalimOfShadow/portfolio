@@ -30,7 +30,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 200px;
-  margin: auto
+  margin: auto;
 }
 @media (max-width: 1440px) {
   .glowing-txt {

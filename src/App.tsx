@@ -27,7 +27,6 @@ function App() {
     useWindowDimensions();
   const [characterState, setCharacterState] =
     useState<CharacterState>('running');
-
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function App() {
 
   useEffect(() => {
     console.log('Updated characterState:', characterState); // Logs the updated state
-  }, [characterState]); // This hook will run when characterState changes
+  }, [characterState]);
 
   return (
     <>
@@ -68,40 +67,50 @@ function App() {
         firstName={information.userData.firstName}
         lastName={information.userData.lastName}
       />
-      <div style={{ display: 'flex', position: 'relative' }}>
-        {characterPresent && characterState === 'running' ? (
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: pageDimensions.width / 2 - 300 }}
-            transition={{ duration: 1.5 }}
-            onAnimationComplete={() => {
-              if (characterState === 'running') {
-                console.log(characterState);
-                console.log('Animation ended, passing standing');
-                setCharacterState('standing');
-              }
-            }}
-          >
-            <CharacterKyo state={characterState} setState={setCharacterState} />
-          </motion.div>
-        ) : (
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
-            }}
-          >
-            <CharacterKyo state={characterState} setState={setCharacterState} />
-          </div>
-        )}
 
-        <Hero
-          img={profilePicture}
-          description={information.userData.description}
-          title={information.userData.title}
-        />
-      </div>
+      {characterPresent && ( // Conditionally render the character if characterPresent is true
+        <div
+          style={{ display: 'flex', position: 'relative', marginTop: '50px' }}
+        >
+          {characterState === 'running' ? (
+            <motion.div
+              initial={{ x: 0 }}
+              animate={{ x: pageDimensions.width / 2 - 300 }}
+              transition={{ duration: 1.5 }}
+              onAnimationComplete={() => {
+                if (characterState === 'running') {
+                  console.log(characterState);
+                  console.log('Animation ended, passing standing');
+                  setCharacterState('neomax');
+                }
+              }}
+            >
+              <CharacterKyo
+                state={characterState}
+                setState={setCharacterState}
+              />
+            </motion.div>
+          ) : (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
+              }}
+            >
+              <CharacterKyo
+                state={characterState}
+                setState={setCharacterState}
+              />
+            </div>
+          )}
+        </div>
+      )}
+      <Hero
+        img={profilePicture}
+        description={information.userData.description}
+        title={information.userData.title}
+      />
 
       <div className="hr"></div>
 
@@ -127,6 +136,7 @@ function App() {
           ))}
         </motion.div>
       </section>
+
       <section id="skills">
         <Heading firstWord="Skills" secondWord="&Tools" />
         <motion.div
@@ -143,6 +153,7 @@ function App() {
           ))}
         </motion.div>
       </section>
+
       <section id="blog">
         <Heading firstWord="My" secondWord="Blog" />
         <div className="posts">
@@ -160,6 +171,7 @@ function App() {
           View More Posts
         </a>
       </section>
+
       <section id="contact">
         <Heading firstWord="Contact" secondWord="Me" />
         <ContactForm />
