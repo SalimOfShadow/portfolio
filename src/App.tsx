@@ -18,16 +18,26 @@ import React from 'react';
 import { CharacterKyo } from './components/animations/kyo/Kyo';
 import useWindowDimensions from './hooks/useWindowDimensions';
 import { CharacterState } from './contexts/CharacterContext';
-import profilePicture from "./assets/profile-picture.png"
-
-
-
+import profilePicture from './assets/profile-picture.png';
 
 function App() {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true });
-  const pageDimensions: {width: number,height: number} = useWindowDimensions()
-  const [ characterState, setCharacterState] = useState<CharacterState>("running");
+  const pageDimensions: { width: number; height: number } =
+    useWindowDimensions();
+  const [characterState, setCharacterState] =
+    useState<CharacterState>('running');
+
+  const [characterPresent, setCharacterPresent] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (pageDimensions.width > 1242) {
+      setCharacterPresent(true);
+    } else {
+      setCharacterPresent(false);
+    }
+  }, [pageDimensions]);
+
   useEffect(() => {
     if (inView) {
       controls.start('visible');
@@ -48,12 +58,9 @@ function App() {
     visible: { opacity: 1, x: 0 },
   };
 
-
   useEffect(() => {
     console.log('Updated characterState:', characterState); // Logs the updated state
   }, [characterState]); // This hook will run when characterState changes
-
-
 
   return (
     <>
@@ -61,32 +68,40 @@ function App() {
         firstName={information.userData.firstName}
         lastName={information.userData.lastName}
       />
+      <div style={{ display: 'flex', position: 'relative' }}>
+        {characterPresent && characterState === 'running' ? (
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: pageDimensions.width / 2 - 300 }}
+            transition={{ duration: 1.5 }}
+            onAnimationComplete={() => {
+              if (characterState === 'running') {
+                console.log(characterState);
+                console.log('Animation ended, passing standing');
+                setCharacterState('standing');
+              }
+            }}
+          >
+            <CharacterKyo state={characterState} setState={setCharacterState} />
+          </motion.div>
+        ) : (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
+            }}
+          >
+            <CharacterKyo state={characterState} setState={setCharacterState} />
+          </div>
+        )}
 
-
-      <div style={{ display: 'flex' }}>
-        {pageDimensions.width > 1242 &&
-        <motion.div
-        initial={{ x: 0 }}
-        animate={{ x: pageDimensions.width / 2 - 300 }}
-          transition={{duration: 1.5}}
-        onAnimationComplete={() => {
-          console.log(characterState)
-          console.log("Animation ended,passing standing")
-          setCharacterState('standing');
-
-        }}
-        >
-
-          <CharacterKyo state={characterState} setState={setCharacterState}/>
-        </motion.div>
-        }
         <Hero
           img={profilePicture}
           description={information.userData.description}
           title={information.userData.title}
-          />
+        />
       </div>
-
 
       <div className="hr"></div>
 
