@@ -86,8 +86,8 @@ function App() {
               }}
             >
               <CharacterKyo
-                state={characterState}
-                setState={setCharacterState}
+                characterState={characterState}
+                setCharacterState={setCharacterState}
               />
             </motion.div>
           ) : (
@@ -99,8 +99,8 @@ function App() {
               }}
             >
               <CharacterKyo
-                state={characterState}
-                setState={setCharacterState}
+                characterState={characterState}
+                setCharacterState={setCharacterState}
               />
             </div>
           )}
