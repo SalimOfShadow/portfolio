@@ -1,0 +1,9 @@
+.fire-ring {
+  position: absolute;
+  transform: translateY(-80%);
+  z-index: -1; /* Ensure it appears behind the character */
+}
+.fire-ring-img {
+  position: relative;
+  transform: translateX(-130px); /* Fine-tune horizontal centering */
+}

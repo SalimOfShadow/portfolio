@@ -2,17 +2,18 @@ import * as React from "react";
 import { useState, createContext, useContext } from "react";
 
 // Defining the possible character states
-export type CharacterState = 'running' | 'standing' | 'winpose';
+export type CharacterState = "running" | "standing" | "winpose" | "nemoax";
 
 // Create the CharacterContext
 const CharacterContext = createContext({
-  characterState: 'standing' as CharacterState,
-  setCharacterState: (state: CharacterState) => {}
+  characterState: "standing" as CharacterState,
+  setCharacterState: (state: CharacterState) => {},
 });
 
 // CharacterProvider Component
 const CharacterProvider = ({ children }) => {
-  const [characterState, setCharacterState] = useState<CharacterState>('running');
+  const [characterState, setCharacterState] =
+    useState<CharacterState>("running");
 
   // Function to directly set the character state to a given value
   const updateCharacterState = (newState: CharacterState) => {
@@ -20,7 +21,9 @@ const CharacterProvider = ({ children }) => {
   };
 
   return (
-    <CharacterContext.Provider value={{ characterState, setCharacterState: updateCharacterState }}>
+    <CharacterContext.Provider
+      value={{ characterState, setCharacterState: updateCharacterState }}
+    >
       {children}
     </CharacterContext.Provider>
   );

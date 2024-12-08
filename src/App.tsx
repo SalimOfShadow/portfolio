@@ -1,24 +1,25 @@
-import './App.css';
-import Hero from './components/Hero';
-import information from './content/information';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ProjectCard from './components/ProjectCard';
-import Heading from './components/Heading';
-import projects from './content/projects';
-import Skill from './components/Skill';
-import skills from './content/skills';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
-import blogPosts from './content/blogPosts';
-import ContactForm from './components/ContactForm';
-import BlogPost from './components/BlogPost';
-import React from 'react';
-import { CharacterKyo } from './components/animations/kyo/Kyo';
-import useWindowDimensions from './hooks/useWindowDimensions';
-import { CharacterState } from './contexts/CharacterContext';
-import profilePicture from './assets/profile-picture.png';
+import "./App.css";
+import Hero from "./components/Hero";
+import information from "./content/information";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ProjectCard from "./components/ProjectCard";
+import Heading from "./components/Heading";
+import projects from "./content/projects";
+import Skill from "./components/Skill";
+import skills from "./content/skills";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
+import blogPosts from "./content/blogPosts";
+import ContactForm from "./components/ContactForm";
+import BlogPost from "./components/BlogPost";
+import React from "react";
+import { CharacterKyo } from "./components/animations/kyo/Kyo";
+import useWindowDimensions from "./hooks/useWindowDimensions";
+import { CharacterState } from "./contexts/CharacterContext";
+import profilePicture from "./assets/profile-picture.png";
+import { FireRing } from "./components/animations/kyo/fire-ring/FireRing";
 
 function App() {
   const controls = useAnimation();
@@ -26,7 +27,7 @@ function App() {
   const pageDimensions: { width: number; height: number } =
     useWindowDimensions();
   const [characterState, setCharacterState] =
-    useState<CharacterState>('running');
+    useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function App() {
 
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      controls.start("visible");
     }
   }, [controls, inView]);
 
@@ -58,7 +59,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('Updated characterState:', characterState); // Logs the updated state
+    console.log("Updated characterState:", characterState); // Logs the updated state
   }, [characterState]);
 
   return (
@@ -70,18 +71,18 @@ function App() {
 
       {characterPresent && ( // Conditionally render the character if characterPresent is true
         <div
-          style={{ display: 'flex', position: 'relative', marginTop: '50px' }}
+          style={{ display: "flex", position: "relative", marginTop: "150px" }}
         >
-          {characterState === 'running' ? (
+          {characterState === "running" ? (
             <motion.div
               initial={{ x: 0 }}
               animate={{ x: pageDimensions.width / 2 - 300 }}
               transition={{ duration: 1.5 }}
               onAnimationComplete={() => {
-                if (characterState === 'running') {
+                if (characterState === "running") {
                   console.log(characterState);
-                  console.log('Animation ended, passing standing');
-                  setCharacterState('neomax');
+                  console.log("Animation ended, passing standing");
+                  setCharacterState("neomax");
                 }
               }}
             >
@@ -93,7 +94,7 @@ function App() {
           ) : (
             <div
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
               }}
@@ -111,7 +112,6 @@ function App() {
         description={information.userData.description}
         title={information.userData.title}
       />
-
       <div className="hr"></div>
 
       <section id="projects">
@@ -131,12 +131,12 @@ function App() {
                 description={project.description}
                 source={project.sourceCode}
                 preview={project.preview}
+                tags={""}
               />
             </div>
           ))}
         </motion.div>
       </section>
-
       <section id="skills">
         <Heading firstWord="Skills" secondWord="&Tools" />
         <motion.div
@@ -164,6 +164,7 @@ function App() {
               image={post.image}
               read={post.link}
               date={post.pubDate}
+              tags={""}
             />
           ))}
         </div>
