@@ -40,7 +40,7 @@ export const CharacterKyo = ({ characterState, setCharacterState }) => {
 
   return (
     <div className="kyo-character">
-      {characterState === "neomax" && <FireRing></FireRing>}
+      {characterState && <FireRing></FireRing>}
       <motion.div>
         <img
           src={getGif()}

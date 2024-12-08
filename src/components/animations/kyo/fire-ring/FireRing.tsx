@@ -1,4 +1,3 @@
-// CharacterKyo.tsx
 import React, { useEffect } from "react";
 import "./fire-ring.css";
 import fireRingImage from "./fire-ring.gif";

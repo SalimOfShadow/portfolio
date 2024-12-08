@@ -20,6 +20,7 @@ import useWindowDimensions from "./hooks/useWindowDimensions";
 import { CharacterState } from "./contexts/CharacterContext";
 import profilePicture from "./assets/profile-picture.png";
 import { FireRing } from "./components/animations/kyo/fire-ring/FireRing";
+import { Explosion } from "./components/animations/explosion/Explosion";
 
 function App() {
   const controls = useAnimation();
@@ -112,6 +113,7 @@ function App() {
         description={information.userData.description}
         title={information.userData.title}
       />
+      <Explosion></Explosion>
       <div className="hr"></div>
 
       <section id="projects">
