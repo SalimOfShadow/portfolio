@@ -8,8 +8,18 @@ import finalGif from "../../../assets/characters-gif/kyo-final.gif";
 import "./kyo.css";
 import { motion } from "framer-motion";
 import { FireRing } from "./fire-ring/FireRing";
+import { CharacterState } from "../../../contexts/CharacterContext";
+
+interface CharacterKyoProps {
+  characterState: CharacterState;
+  setCharacterState: (state: CharacterState) => void;
+}
 // standing to final stutters...TODO : Fix this (extend the standing one a lot maybe?Add a loop animation every N time?)
-export const CharacterKyo = ({ characterState, setCharacterState }) => {
+
+export const CharacterKyo: React.FC<CharacterKyoProps> = ({
+  characterState,
+  setCharacterState,
+}) => {
   // Function to determine the correct GIF based on the state
   const getGif = () => {
     switch (characterState) {
@@ -40,7 +50,9 @@ export const CharacterKyo = ({ characterState, setCharacterState }) => {
 
   return (
     <div className="kyo-character">
-      {characterState && <FireRing></FireRing>}
+      {characterState === "neomax" && (
+        <FireRing animationState="active"></FireRing>
+      )}
       <motion.div>
         <img
           src={getGif()}

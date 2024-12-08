@@ -19,7 +19,6 @@ import { CharacterKyo } from "./components/animations/kyo/Kyo";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 import { CharacterState } from "./contexts/CharacterContext";
 import profilePicture from "./assets/profile-picture.png";
-import { FireRing } from "./components/animations/kyo/fire-ring/FireRing";
 import { Explosion } from "./components/animations/explosion/Explosion";
 
 function App() {
@@ -30,6 +29,27 @@ function App() {
   const [characterState, setCharacterState] =
     useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
+
+  const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
+  const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
+  useEffect(() => {
+    if (!explosionsActive) return;
+    console.log(explosionsActive);
+    let currentDistance = 0;
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        currentDistance += 130; // Increment distance by 100px for each Explosion
+        setExplosions((prevExplosions) => [
+          ...prevExplosions,
+          <Explosion
+            animationState="active"
+            distance={`${currentDistance}px`}
+            key={1337 + i}
+          />,
+        ]);
+      }, i * 250); // Delay by 0.5 seconds for each component
+    }
+  }, [explosionsActive]);
 
   useEffect(() => {
     if (pageDimensions.width > 1242) {
@@ -84,6 +104,9 @@ function App() {
                   console.log(characterState);
                   console.log("Animation ended, passing standing");
                   setCharacterState("neomax");
+                  setTimeout(() => {
+                    setExplosionsActive(true);
+                  }, 1200);
                 }
               }}
             >
@@ -113,7 +136,8 @@ function App() {
         description={information.userData.description}
         title={information.userData.title}
       />
-      <Explosion></Explosion>
+      <div>{explosions}</div>
+      {}
       <div className="hr"></div>
 
       <section id="projects">

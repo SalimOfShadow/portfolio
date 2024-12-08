@@ -2,8 +2,11 @@ import * as React from "react";
 import { useState, createContext, useContext } from "react";
 
 // Defining the possible character states
-export type CharacterState = "running" | "standing" | "winpose" | "nemoax";
+export type CharacterState = "running" | "standing" | "neomax" | "final";
 
+interface CharacterProviderProps {
+  children: React.ReactNode;
+}
 // Create the CharacterContext
 const CharacterContext = createContext({
   characterState: "standing" as CharacterState,
@@ -11,7 +14,7 @@ const CharacterContext = createContext({
 });
 
 // CharacterProvider Component
-const CharacterProvider = ({ children }) => {
+const CharacterProvider: React.FC<CharacterProviderProps> = ({ children }) => {
   const [characterState, setCharacterState] =
     useState<CharacterState>("running");
 

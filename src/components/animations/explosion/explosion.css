@@ -1,10 +1,11 @@
 .explosion {
   position: absolute;
+  left: 50%;
   transform: translateY(-80%);
-  z-index: -1; /* Ensure it appears behind the character */
+  z-index: 1; /* Ensure it appears behind the character */
 }
 .explosion-img {
   width: 300px;
   position: relative;
-  transform: translateX(-130px); /* Fine-tune horizontal centering */
+  z-index: 1000;
 }
