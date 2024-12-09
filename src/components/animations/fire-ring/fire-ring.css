@@ -1,0 +1,10 @@
+.fire-ring {
+  position: absolute;
+  transform: translateY(0%);
+  z-index: -1;
+}
+.fire-ring-img {
+  width: 300px;
+  position: relative;
+  transform: translateX(-80px);
+}

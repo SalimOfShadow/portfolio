@@ -1,0 +1,11 @@
+.projectile {
+  position: absolute;
+  transform: translateY(-135%);
+  z-index: -1;
+}
+
+.projectile-img {
+  width: 230px;
+  position: relative;
+  transform: translateX(-280px);
+}
