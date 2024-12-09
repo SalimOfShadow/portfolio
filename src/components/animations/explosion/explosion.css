@@ -1,7 +1,10 @@
 .explosion {
   position: absolute;
-  left: 50%;
-  transform: translateY(-80%);
+  left: 50%; /* Center horizontally */
+  transform: translate(
+    -160%,
+    -90%
+  ); /* Center horizontally and apply vertical offset */
   z-index: 1; /* Ensure it appears behind the character */
 }
 .explosion-img {
