@@ -9,14 +9,32 @@ interface HeroProps {
   img: string;
   description: string;
   title: string;
+  status: string;
 }
 
 const Hero = (props: HeroProps) => {
+  const [quakeStatus, setQuakeStatus] = React.useState<string>(props.status);
+
+  const quakeAnimation = {
+    quake: {
+      x: [0, -5, 5, -5, 5, 0], // shaking horizontally
+      y: [0, -5, 5, -5, 5, 0], // shaking vertically
+      transition: { duration: 0.6, repeat: Infinity }, // keep repeating
+      scale: 1,
+    },
+    still: {
+      x: 0,
+      y: 0,
+      scale: 1,
+    },
+  };
+
   return (
     <div className="profile-container">
       <motion.div
         initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
+        animate={quakeStatus === 'quake' ? 'quake' : 'still'}
+        variants={quakeAnimation}
         transition={{
           type: 'spring',
           stiffness: 260,
@@ -39,4 +57,5 @@ Hero.propTypes = {
   img: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
 };

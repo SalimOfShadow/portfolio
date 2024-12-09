@@ -135,6 +135,7 @@ function App() {
         img={profilePicture}
         description={information.userData.description}
         title={information.userData.title}
+        status={'quake'}
       />
       <div>{explosions}</div>
       {}
