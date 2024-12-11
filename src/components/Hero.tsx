@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import Heading from './Heading';
@@ -15,7 +15,15 @@ interface HeroProps {
 }
 
 const Hero = (props: HeroProps) => {
-  const [quakeStatus, setQuakeStatus] = React.useState<string>(props.status);
+  const [pfpStatus, setPfpStatus] = useState<string>(props.status);
+
+  useEffect(() => {
+    console.log(props.status);
+    setPfpStatus(props.status);
+    if (props.status === 'quake') {
+      setTimeout(() => setPfpStatus('idle'), 1250);
+    }
+  }, [props.status]);
 
   const quakeAnimation = {
     quake: {
@@ -24,7 +32,7 @@ const Hero = (props: HeroProps) => {
       transition: { duration: 0.6, repeat: Infinity },
       scale: 1,
     },
-    still: {
+    idle: {
       x: 0,
       y: 0,
       scale: 1,
@@ -35,7 +43,7 @@ const Hero = (props: HeroProps) => {
     <div className="profile-container">
       <motion.div
         initial={{ scale: 0 }}
-        animate={quakeStatus === 'quake' ? 'quake' : 'still'}
+        animate={pfpStatus}
         variants={quakeAnimation}
         transition={{
           type: 'spring',
