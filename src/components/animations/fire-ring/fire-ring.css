@@ -8,3 +8,9 @@
   position: relative;
   transform: translateX(-80px);
 }
+.projectile-initial {
+  position: relative;
+  width: 90px;
+  transform: translateY(-130px);
+  margin-left: 80%;
+}

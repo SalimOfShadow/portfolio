@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './projectile.css';
 import projectileImage from './projectile.gif';
+import tialExplosion from './projectile-initial.gif';
 import { motion } from 'framer-motion';
-
 type ProjectileState = 'active' | 'inactive';
 
 type ProjectileProps = {

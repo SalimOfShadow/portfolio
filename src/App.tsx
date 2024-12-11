@@ -1,5 +1,5 @@
 import './App.css';
-import Hero from './components/Hero';
+import Hero, { PfpAnimation } from './components/Hero';
 import information from './content/information';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -32,6 +32,7 @@ function App() {
 
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
+  const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>('idle');
   useEffect(() => {
     if (!explosionsActive) return;
     console.log(explosionsActive);
@@ -106,6 +107,7 @@ function App() {
                   setCharacterState('neomax');
                   setTimeout(() => {
                     setExplosionsActive(true);
+                    setPfpAnimation('quake');
                   }, 1200);
                 }
               }}
@@ -135,7 +137,7 @@ function App() {
         img={profilePicture}
         description={information.userData.description}
         title={information.userData.title}
-        status={'quake'}
+        status={pfpAnimation}
       />
       <div>{explosions}</div>
       {}

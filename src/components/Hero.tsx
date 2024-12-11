@@ -5,11 +5,13 @@ import Heading from './Heading';
 import socials from '../content/socials';
 import Typewriter from 'typewriter-effect';
 
+export type PfpAnimation = 'idle' | 'quake' | 'blood' | 'frozen';
+
 interface HeroProps {
   img: string;
   description: string;
   title: string;
-  status: string;
+  status: PfpAnimation;
 }
 
 const Hero = (props: HeroProps) => {
@@ -17,9 +19,9 @@ const Hero = (props: HeroProps) => {
 
   const quakeAnimation = {
     quake: {
-      x: [0, -5, 5, -5, 5, 0], // shaking horizontally
-      y: [0, -5, 5, -5, 5, 0], // shaking vertically
-      transition: { duration: 0.6, repeat: Infinity }, // keep repeating
+      x: [0, -5, 5, -5, 5, 0],
+      y: [0, -5, 5, -5, 5, 0],
+      transition: { duration: 0.6, repeat: Infinity },
       scale: 1,
     },
     still: {
