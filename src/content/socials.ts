@@ -1,19 +1,21 @@
 const socials = [
   {
-    icon: "github.svg",
-    url: "https://github.com/randilt",
+    icon: 'github.svg',
+    url: 'https://github.com/salimofshadow',
   },
   {
-    icon: "linkedin.svg",
-    url: "https://www.linkedin.com/in/randiltharusha/",
+    icon: 'gitlab.svg',
+    url: 'https://gitlab.com/salimofshadow',
   },
+
   {
-    icon: "instagram.svg",
-    url: "https://www.instagram.com/itz_toxic03/",
+    icon: 'linkedin.svg',
+    url: 'https://www.linkedin.com/in/salim-nur-096a67325/',
   },
+  { icon: 'steam.svg', url: 'https://steamcommunity.com/id/salimofshadow/' },
   {
-    icon: "facebook.svg",
-    url: "https://facebook.com/profile.php?id=100089910035602",
+    icon: 'discord.svg',
+    url: 'https://discord.com/invite/DhxSr2b',
   },
 ];
 

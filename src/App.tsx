@@ -1,25 +1,25 @@
-import "./App.css";
-import Hero, { PfpAnimation } from "./components/Hero";
-import information from "./content/information";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ProjectCard from "./components/ProjectCard";
-import Heading from "./components/Heading";
-import projects from "./content/projects";
-import Skill from "./components/Skill";
-import { skills } from "./content/skills";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
-import blogPosts from "./content/blogPosts";
-import ContactForm from "./components/ContactForm";
-import BlogPost from "./components/BlogPost";
-import React from "react";
-import { CharacterKyo } from "./components/animations/kyo/Kyo";
-import useWindowDimensions from "./hooks/useWindowDimensions";
-import { CharacterState } from "./contexts/CharacterContext";
-import profilePicture from "./assets/profile-picture.png";
-import { Explosion } from "./components/animations/explosion/Explosion";
+import './App.css';
+import Hero, { PfpAnimation } from './components/Hero';
+import information from './content/information';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ProjectCard from './components/ProjectCard';
+import Heading from './components/Heading';
+import projects from './content/projects';
+import Skill from './components/Skill';
+import { skills } from './content/skills';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from 'react';
+import blogPosts from './content/blogPosts';
+import ContactForm from './components/ContactForm';
+import BlogPost from './components/BlogPost';
+import React from 'react';
+import { CharacterKyo } from './components/animations/kyo/Kyo';
+import useWindowDimensions from './hooks/useWindowDimensions';
+import { CharacterState } from './contexts/CharacterContext';
+import profilePicture from './assets/profile-picture.png';
+import { Explosion } from './components/animations/explosion/Explosion';
 
 function App() {
   const controls = useAnimation();
@@ -27,12 +27,12 @@ function App() {
   const pageDimensions: { width: number; height: number } =
     useWindowDimensions();
   const [characterState, setCharacterState] =
-    useState<CharacterState>("running");
+    useState<CharacterState>('running');
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
 
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
-  const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>("idle");
+  const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>('idle');
   useEffect(() => {
     if (!explosionsActive) return;
     console.log(explosionsActive);
@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start('visible');
     }
   }, [controls, inView]);
 
@@ -81,7 +81,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Updated characterState:", characterState); // Logs the updated state
+    console.log('Updated characterState:', characterState); // Logs the updated state
   }, [characterState]);
 
   return (
@@ -93,19 +93,19 @@ function App() {
 
       {characterPresent && ( // Conditionally render the character if characterPresent is true
         <div
-          style={{ display: "flex", position: "relative", marginTop: "70px" }}
+          style={{ display: 'flex', position: 'relative', marginTop: '70px' }}
         >
-          {characterState === "running" ? (
+          {characterState === 'running' ? (
             <motion.div
               initial={{ x: 0 }}
               animate={{ x: pageDimensions.width / 2 - 300 }}
               transition={{ duration: 1.5 }}
               onAnimationComplete={() => {
-                if (characterState === "running") {
-                  setCharacterState("neomax");
+                if (characterState === 'running') {
+                  setCharacterState('neomax');
                   setTimeout(() => {
                     setExplosionsActive(true);
-                    setPfpAnimation("quake");
+                    setTimeout(() => setPfpAnimation('quake'), 100);
                   }, 1200);
                 }
               }}
@@ -118,7 +118,7 @@ function App() {
           ) : (
             <div
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
               }}
@@ -158,7 +158,7 @@ function App() {
                 description={project.description}
                 source={project.sourceCode}
                 preview={project.preview}
-                tags={""}
+                tags={''}
               />
             </div>
           ))}
@@ -179,25 +179,6 @@ function App() {
             </motion.div>
           ))}
         </motion.div>
-      </section>
-
-      <section id="blog">
-        <Heading firstWord="My" secondWord="Blog" />
-        <div className="posts">
-          {blogPosts.map((post, index) => (
-            <BlogPost
-              key={index}
-              title={post.title}
-              image={post.image}
-              read={post.link}
-              date={post.pubDate}
-              tags={""}
-            />
-          ))}
-        </div>
-        <a className="cyber-scourge" href="https://blog.randiltharusha.me">
-          View More Posts
-        </a>
       </section>
 
       <section id="contact">
