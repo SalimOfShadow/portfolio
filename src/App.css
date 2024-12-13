@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.cdnfonts.com/css/technology?styles=26651');
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* Arbitrary colors :  */
+
+.blue {
+  color: 394cfa;
+  background-color: 394cfa;
+}
+
 :root {
   --glow-color: hsl(219, 100%, 69%);
 }
@@ -356,7 +364,7 @@ footer {
   margin-bottom: 40px;
 }
 .hero-socials img {
-  max-width: 60px;
+  max-width: 45px;
   transition: 0.2s all ease-in-out;
 }
 .hero-socials img:hover {

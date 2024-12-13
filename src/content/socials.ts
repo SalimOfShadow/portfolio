@@ -12,11 +12,11 @@ const socials = [
     icon: 'linkedin.svg',
     url: 'https://www.linkedin.com/in/salim-nur-096a67325/',
   },
-  { icon: 'steam.svg', url: 'https://steamcommunity.com/id/salimofshadow/' },
   {
-    icon: 'discord.svg',
-    url: 'https://discord.com/invite/DhxSr2b',
+    icon: 'youtube.svg',
+    url: 'https://youtube.com/@SalimOfShadow',
   },
+  { icon: 'steam.svg', url: 'https://steamcommunity.com/id/salimofshadow/' },
 ];
 
 export default socials;
