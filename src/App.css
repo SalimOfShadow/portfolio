@@ -5,8 +5,11 @@
 /* Arbitrary colors :  */
 
 .blue {
-  color: 394cfa;
-  background-color: 394cfa;
+  color: #394cfa;
+}
+
+.red {
+  color: #c61b05;
 }
 
 :root {
@@ -230,7 +233,7 @@ footer {
   font-size: 50px;
   text-align: center;
 }
-.heading h1 span {
+.heading h1 span .blue {
   color: #394cfa;
 }
 @media (max-width: 768px) {

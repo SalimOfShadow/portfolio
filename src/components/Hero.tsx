@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Heading from './Heading';
 import socials from '../content/socials';
 import Typewriter from 'typewriter-effect';
+import { changeTheme, ThemeProvider, useTheme } from '../contexts/ThemeContext';
 
 export type PfpAnimation = 'idle' | 'quake' | 'blood' | 'frozen';
 
@@ -16,6 +17,7 @@ interface HeroProps {
 
 const Hero = (props: HeroProps) => {
   const [pfpStatus, setPfpStatus] = useState<string>(props.status);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     console.log(props.status);
@@ -60,7 +62,14 @@ const Hero = (props: HeroProps) => {
         }}
         className="pfp"
       >
-        <img src={props.img} alt="" />
+        <img
+          src={props.img}
+          alt=""
+          onClick={() => {
+            const newTheme = changeTheme(theme);
+            setTheme(newTheme);
+          }}
+        />
       </motion.div>
     </div>
   );

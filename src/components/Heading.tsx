@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 const Heading = (props) => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="heading hero-text">
       <h1>
         &lt;
         {props.firstWord}
-        <span>{props.secondWord}/&gt;</span>
+        <span className={theme}>{props.secondWord}/&gt;</span>
       </h1>
     </div>
   );
