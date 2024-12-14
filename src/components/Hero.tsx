@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
-import Heading from './Heading';
-import socials from '../content/socials';
-import Typewriter from 'typewriter-effect';
-import { changeTheme, ThemeProvider, useTheme } from '../contexts/ThemeContext';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { motion } from "framer-motion";
+import { CharacterState } from "../contexts/CharacterContext";
 
-export type PfpAnimation = 'idle' | 'quake' | 'blood' | 'frozen';
+export type PfpAnimation = "idle" | "quake" | "blood" | "frozen";
 
 interface HeroProps {
   img: string;
   description: string;
   title: string;
   status: PfpAnimation;
+  characterState: CharacterState;
 }
 
 const Hero = (props: HeroProps) => {
   const [pfpStatus, setPfpStatus] = useState<string>(props.status);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     console.log(props.status);
     setPfpStatus(props.status);
-    if (props.status === 'quake') {
-      setTimeout(() => setPfpStatus('idle'), 1400);
+    if (props.status === "quake") {
+      setTimeout(() => setPfpStatus("idle"), 1400);
     }
   }, [props.status]);
 
@@ -32,7 +29,7 @@ const Hero = (props: HeroProps) => {
       x: [0, -10, 10, -5, 5, 0],
       y: [0, -10, 5, 10, -5, 0],
       rotate: [0, 10, 20, 30, 20, 10, 0, -10, -20, -30, -20, -10, 0],
-      transition: { duration: 0.32, repeat: Infinity, ease: 'easeInOut' },
+      transition: { duration: 0.32, repeat: Infinity, ease: "easeInOut" },
 
       scale: 1,
     },
@@ -51,25 +48,18 @@ const Hero = (props: HeroProps) => {
         animate={pfpStatus}
         variants={quakeAnimation}
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: 260,
           damping: 20,
         }}
         whileHover={{ scale: 1.2 }}
         whileTap={{
           scale: 1.1,
-          borderRadius: '100%',
+          borderRadius: "100%",
         }}
         className="pfp"
       >
-        <img
-          src={props.img}
-          alt=""
-          onClick={() => {
-            const newTheme = changeTheme(theme);
-            setTheme(newTheme);
-          }}
-        />
+        <img src={props.img} alt="" />
       </motion.div>
     </div>
   );

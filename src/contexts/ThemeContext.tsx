@@ -1,5 +1,5 @@
 // Define the types of themes
-export type Theme = 'blue' | 'red' | 'yellow' | 'green';
+export type Theme = "blue" | "red" | "yellow" | "green";
 
 // Interface for the context state
 interface ThemeContextState {
@@ -8,14 +8,35 @@ interface ThemeContextState {
 }
 
 // Default values for the context
-const defaultTheme: Theme = 'blue';
+const defaultTheme: Theme = "blue";
 const defaultState: ThemeContextState = {
   theme: defaultTheme,
   setTheme: () => {}, // Placeholder function
 };
 
+export const themeStyles = {
+  blue: "#394cfa",
+  red: "#fa3939",
+  green: "green",
+  yellow: "yellow",
+};
+
+export const darkThemeStyles = {
+  blue: "0f5f94",
+  red: "#a62525",
+  green: "green",
+  yellow: "yellow",
+};
+
+export const themeShadows = {
+  blue: "#1875df",
+  red: "#872f1f5e",
+  green: "green",
+  yellow: "yellow",
+};
+
 // Create the Theme Context
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 const ThemeContext = createContext<ThemeContextState>(defaultState);
 
@@ -38,13 +59,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 export const useTheme = (): ThemeContextState => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 };
 
 export function changeTheme(theme: Theme): Theme {
-  const themeArray: Theme[] = ['blue', 'red'];
-  console.log('Should happen');
+  const themeArray: Theme[] = ["blue", "red"];
+  console.log("Should happen");
   return themeArray[themeArray.indexOf(theme) + 1];
 }

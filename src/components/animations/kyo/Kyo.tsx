@@ -31,6 +31,8 @@ export const CharacterKyo: React.FC<CharacterKyoProps> = ({
         return standingGif;
       case "final":
         return finalGif;
+      case "running-back":
+        return runningGif;
       default:
         return standingGif; // Fallback to standing GIF
     }
@@ -58,6 +60,13 @@ export const CharacterKyo: React.FC<CharacterKyoProps> = ({
           src={getGif()}
           alt={`Kyo is ${characterState}`}
           className="kyo-image"
+          style={
+            characterState === "running-back"
+              ? {
+                  transform: "scaleX(-1)",
+                }
+              : undefined
+          }
         />
       </motion.div>
     </div>

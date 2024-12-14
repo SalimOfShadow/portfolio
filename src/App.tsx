@@ -1,38 +1,40 @@
-import './App.css';
-import Hero, { PfpAnimation } from './components/Hero';
-import information from './content/information';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ProjectCard from './components/ProjectCard';
-import Heading from './components/Heading';
-import projects from './content/projects';
-import Skill from './components/Skill';
-import { skills } from './content/skills';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
-import blogPosts from './content/blogPosts';
-import ContactForm from './components/ContactForm';
-import BlogPost from './components/BlogPost';
-import React from 'react';
-import { CharacterKyo } from './components/animations/kyo/Kyo';
-import useWindowDimensions from './hooks/useWindowDimensions';
-import { CharacterState } from './contexts/CharacterContext';
-import profilePicture from './assets/profile-picture.png';
-import { Explosion } from './components/animations/explosion/Explosion';
+import "./App.css";
+import Hero, { PfpAnimation } from "./components/Hero";
+import information from "./content/information";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ProjectCard from "./components/ProjectCard";
+import Heading from "./components/Heading";
+import projects from "./content/projects";
+import Skill from "./components/Skill";
+import { skills } from "./content/skills";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
+import blogPosts from "./content/blogPosts";
+import ContactForm from "./components/ContactForm";
+import BlogPost from "./components/BlogPost";
+import React from "react";
+import { CharacterKyo } from "./components/animations/kyo/Kyo";
+import useWindowDimensions from "./hooks/useWindowDimensions";
+import { CharacterState } from "./contexts/CharacterContext";
+import profilePicture from "./assets/profile-picture.png";
+import { Explosion } from "./components/animations/explosion/Explosion";
+import { changeTheme, useTheme } from "./contexts/ThemeContext";
 
 function App() {
   const controls = useAnimation();
+  const { theme, setTheme } = useTheme();
   const [ref, inView] = useInView({ triggerOnce: true });
   const pageDimensions: { width: number; height: number } =
     useWindowDimensions();
   const [characterState, setCharacterState] =
-    useState<CharacterState>('running');
+    useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
 
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
-  const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>('idle');
+  const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>("idle");
   useEffect(() => {
     if (!explosionsActive) return;
     console.log(explosionsActive);
@@ -53,7 +55,7 @@ function App() {
   }, [explosionsActive]);
 
   useEffect(() => {
-    if (pageDimensions.width > 1242) {
+    if (pageDimensions.width > 1242 && characterState !== "running-back") {
       setCharacterPresent(true);
     } else {
       setCharacterPresent(false);
@@ -62,7 +64,7 @@ function App() {
 
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      controls.start("visible");
     }
   }, [controls, inView]);
 
@@ -81,7 +83,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('Updated characterState:', characterState); // Logs the updated state
+    console.log("Updated characterState:", characterState); // Logs the updated state
   }, [characterState]);
 
   return (
@@ -93,21 +95,32 @@ function App() {
 
       {characterPresent && ( // Conditionally render the character if characterPresent is true
         <div
-          style={{ display: 'flex', position: 'relative', marginTop: '70px' }}
+          style={{ display: "flex", position: "relative", marginTop: "70px" }}
         >
-          {characterState === 'running' ? (
+          {characterState === "running" || characterState === "running-back" ? (
             <motion.div
-              initial={{ x: 0 }}
-              animate={{ x: pageDimensions.width / 2 - 300 }}
+              initial={{
+                x:
+                  characterState === "running-back"
+                    ? pageDimensions.width / 2 - 300
+                    : 0,
+              }}
+              animate={{
+                x:
+                  characterState === "running-back"
+                    ? 0
+                    : pageDimensions.width / 2 - 300,
+              }}
               transition={{ duration: 1.5 }}
               onAnimationComplete={() => {
-                if (characterState === 'running') {
-                  setCharacterState('neomax');
+                if (characterState === "running") {
+                  setCharacterState("neomax");
                   setTimeout(() => {
                     setExplosionsActive(true);
-                    setTimeout(() => setPfpAnimation('quake'), 100);
+                    setTimeout(() => setPfpAnimation("quake"), 100);
                   }, 1200);
-                }
+                } else if (characterState === "running-back")
+                  setCharacterPresent(false);
               }}
             >
               <CharacterKyo
@@ -118,7 +131,7 @@ function App() {
           ) : (
             <div
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
               }}
@@ -129,15 +142,47 @@ function App() {
               />
             </div>
           )}
+          <button
+            onClick={() => {
+              setCharacterState("running-back");
+              setTimeout(() => {
+                setCharacterState("off-screen");
+              }, 1500);
+            }}
+          >
+            Running back
+          </button>
         </div>
       )}
-      <Hero
-        img={profilePicture}
-        description={information.userData.description}
-        title={information.userData.title}
-        status={pfpAnimation}
-      />
-      <div>{explosions}</div>
+      <button
+        onClick={() => {
+          const newTheme = changeTheme(theme);
+          setTheme(newTheme);
+        }}
+      >
+        fffffffffffffff
+      </button>
+      <div
+        onClick={async () => {
+          if (characterState === "final") {
+            setCharacterState("running-back");
+            const wait = (ms: number | undefined) =>
+              new Promise((resolve) => setTimeout(resolve, ms));
+            await wait(2000);
+            const newTheme = changeTheme(theme);
+            setTheme(newTheme);
+          }
+        }}
+      >
+        <Hero
+          img={profilePicture}
+          description={information.userData.description}
+          title={information.userData.title}
+          status={pfpAnimation}
+          characterState={characterState}
+        />
+        <div>{explosions}</div>
+      </div>
       {}
       <div className="hr"></div>
 
@@ -158,7 +203,7 @@ function App() {
                 description={project.description}
                 source={project.sourceCode}
                 preview={project.preview}
-                tags={''}
+                tags={""}
               />
             </div>
           ))}

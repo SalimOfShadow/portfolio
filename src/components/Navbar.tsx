@@ -1,17 +1,33 @@
 // Navbar.js
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import PropTypes from "prop-types";
 
-import '../App.css';
+import "../App.css";
+import {
+  darkThemeStyles,
+  themeStyles,
+  useTheme,
+} from "../contexts/ThemeContext";
+
+const headerColors = {
+  blue: "#1f2187",
+  red: "#872f1f",
+  green: "green",
+  yellow: "yellow",
+};
 
 const Navbar = (props) => {
+  const { theme, setTheme } = useTheme();
   return (
-    <header className="header">
+    <header
+      className="header"
+      style={{ boxShadow: `0 8px 32px 0 ${headerColors[theme]}` }}
+    >
       <nav>
         <div className="logo">
           <a href="index.html">
-            {'Salim'}
-            <span>{'   KOF'}</span>
+            {"Salim"}
+            <span style={{ color: darkThemeStyles[theme] }}>{"   KOF"}</span>
           </a>
         </div>
         <input type="checkbox" id="menu-toggle" />
@@ -31,7 +47,11 @@ const Navbar = (props) => {
           </li>
 
           <li>
-            <a href="#contact" className="navbar-btn">
+            <a
+              href="#contact"
+              className={`navbar-btn`}
+              style={{ backgroundColor: themeStyles[theme] }}
+            >
               Contact Me
             </a>
           </li>

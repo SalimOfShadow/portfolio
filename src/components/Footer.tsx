@@ -1,12 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>
-        &copy; 2023. Made with ❤️ by{' '}
-        <a href="https://github.com/randilt">RandilT</a>.
-      </p>
+      <p>Salim Of Shadow KOF</p>
     </footer>
   );
 };

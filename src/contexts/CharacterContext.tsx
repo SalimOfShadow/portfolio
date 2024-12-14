@@ -2,7 +2,13 @@ import * as React from "react";
 import { useState, createContext, useContext } from "react";
 
 // Defining the possible character states
-export type CharacterState = "running" | "standing" | "neomax" | "final";
+export type CharacterState =
+  | "off-screen"
+  | "running"
+  | "standing"
+  | "neomax"
+  | "final"
+  | "running-back";
 
 interface CharacterProviderProps {
   children: React.ReactNode;

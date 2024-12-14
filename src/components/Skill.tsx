@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import wipImage from "../assets/5578703.png";
 import "../App.css";
 import { animate, motion } from "framer-motion";
+import { themeShadows, useTheme } from "../contexts/ThemeContext";
 const Skill = (props: { skill: string; url: string }) => {
   const [WIP, setIsWIP] = useState<boolean>(false);
-
+  const { theme } = useTheme();
   useEffect(() => {
     if (
       props.skill.substring(props.skill.length - 7, props.skill.length - 4) ===
@@ -15,7 +16,10 @@ const Skill = (props: { skill: string; url: string }) => {
   }, [WIP]);
 
   return (
-    <div className="skill">
+    <div
+      className="skill"
+      style={{ boxShadow: `0 8px 32px 0 ${themeShadows[theme]}` }}
+    >
       {WIP && (
         <motion.div
           className="wip-img"
