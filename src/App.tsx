@@ -15,11 +15,14 @@ import blogPosts from "./content/blogPosts";
 import ContactForm from "./components/ContactForm";
 import BlogPost from "./components/BlogPost";
 import React from "react";
-import { CharacterKyo } from "./components/animations/kyo/Kyo";
+import {
+  Character,
+  CharacterName,
+} from "./components/animations/character/Character";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 import { CharacterState } from "./contexts/CharacterContext";
 import profilePicture from "./assets/profile-picture.png";
-import { Explosion } from "./components/animations/explosion/Explosion";
+import { Explosion } from "./components/animations/kyo/explosion/Explosion";
 import { changeTheme, useTheme } from "./contexts/ThemeContext";
 
 function App() {
@@ -31,10 +34,15 @@ function App() {
   const [characterState, setCharacterState] =
     useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
-
+  const [characterName, setCharacterName] = useState<CharacterName>("kyo");
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
   const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>("idle");
+
+  useEffect(() => {
+    console.log("Updated characterName:", characterName);
+  }, [characterName]);
+
   useEffect(() => {
     if (!explosionsActive) return;
     console.log(explosionsActive);
@@ -121,9 +129,10 @@ function App() {
                   setCharacterPresent(false);
               }}
             >
-              <CharacterKyo
+              <Character
                 characterState={characterState}
                 setCharacterState={setCharacterState}
+                characterName={characterName}
               />
             </motion.div>
           ) : (
@@ -134,9 +143,10 @@ function App() {
                 left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
               }}
             >
-              <CharacterKyo
+              <Character
                 characterState={characterState}
                 setCharacterState={setCharacterState}
+                characterName={characterName}
               />
             </div>
           )}
@@ -151,6 +161,12 @@ function App() {
             await wait(2000);
             const newTheme = changeTheme(theme);
             setTheme(newTheme);
+
+            setCharacterPresent(true);
+            setCharacterName("iori");
+            setCharacterState("running");
+
+            console.log(characterName);
           }
         }}
       >

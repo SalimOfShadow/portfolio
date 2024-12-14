@@ -3,7 +3,6 @@ import { useState, createContext, useContext } from "react";
 
 // Defining the possible character states
 export type CharacterState =
-  | "off-screen"
   | "running"
   | "standing"
   | "neomax"

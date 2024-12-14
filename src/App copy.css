@@ -177,11 +177,11 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
 }
 .pfp img {
   max-width: 150px;
   border-radius: 50%;
+  margin-top: 30px;
 }
 /* hero styles end */
 
