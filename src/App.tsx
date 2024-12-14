@@ -142,16 +142,6 @@ function App() {
               />
             </div>
           )}
-          <button
-            onClick={() => {
-              setCharacterState("running-back");
-              setTimeout(() => {
-                setCharacterState("off-screen");
-              }, 1500);
-            }}
-          >
-            Running back
-          </button>
         </div>
       )}
       <button
