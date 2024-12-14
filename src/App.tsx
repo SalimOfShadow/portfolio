@@ -94,9 +94,7 @@ function App() {
       />
 
       {characterPresent && ( // Conditionally render the character if characterPresent is true
-        <div
-          style={{ display: "flex", position: "relative", marginTop: "70px" }}
-        >
+        <div style={{ display: "flex", position: "relative" }}>
           {characterState === "running" || characterState === "running-back" ? (
             <motion.div
               initial={{
@@ -144,14 +142,6 @@ function App() {
           )}
         </div>
       )}
-      <button
-        onClick={() => {
-          const newTheme = changeTheme(theme);
-          setTheme(newTheme);
-        }}
-      >
-        fffffffffffffff
-      </button>
       <div
         onClick={async () => {
           if (characterState === "final") {

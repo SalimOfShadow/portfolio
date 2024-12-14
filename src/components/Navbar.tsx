@@ -21,7 +21,10 @@ const Navbar = (props) => {
   return (
     <header
       className="header"
-      style={{ boxShadow: `0 8px 32px 0 ${headerColors[theme]}` }}
+      style={{
+        boxShadow: `0 8px 32px 0 ${headerColors[theme]}`,
+        marginBottom: "70px",
+      }}
     >
       <nav>
         <div className="logo">
