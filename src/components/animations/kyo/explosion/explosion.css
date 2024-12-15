@@ -3,7 +3,7 @@
   left: 50%; /* Center horizontally */
   transform: translate(
     -160%,
-    -90%
+    -85%
   ); /* Center horizontally and apply vertical offset */
   z-index: 1; /* Ensure it appears behind the character */
 }

@@ -9,10 +9,10 @@ import kyoNeomaxGif from "../../../assets/characters-gif/kyo/kyo-neomax.gif";
 import kyoFinalGif from "../../../assets/characters-gif/kyo/kyo-final.gif";
 import { FireRing } from "../kyo/fire-ring/FireRing";
 // Iori
-import ioriRunningGif from "../../../assets/characters-gif/iori/iori-running.gif";
-import ioriStandingGif from "../../../assets/characters-gif/iori/iori-winpose.gif";
-import ioriNeomaxGif from "../../../assets/characters-gif/iori/iori-neomax.gif";
-import ioriFinalGif from "../../../assets/characters-gif/iori/iori-final.gif";
+import ioriRunningGif from "../../../assets/characters-gif/iori/test-iori-running.gif";
+import ioriStandingGif from "../../../assets/characters-gif/iori/test-iori-winpose.gif";
+import ioriNeomaxGif from "../../../assets/characters-gif/iori/test-iori-neomax.gif";
+import ioriFinalGif from "../../../assets/characters-gif/iori/test-iori-final.gif";
 
 import "./character.css";
 import { motion } from "framer-motion";
@@ -55,33 +55,59 @@ export const Character: React.FC<CharacterProps> = ({
   };
 
   useEffect(() => {
-    if (characterState === "neomax")
+    // Kyo's timing
+    if (characterState === "neomax" && characterName === "kyo")
       setTimeout(() => {
         setCharacterState("standing");
       }, 3200);
+
     if (characterState === "standing")
       setTimeout(() => {
         setCharacterState("final");
       }, 1200);
+
+    // Iori's timing
+
+    if (characterState === "neomax" && characterName === "iori")
+      setTimeout(() => {
+        setCharacterState("standing");
+      }, 121800); // 11
   }, [characterState]);
 
   return (
-    <div className="character">
-      {characterState === "neomax" && (
+    <div
+      className={characterName + "-character"}
+      style={
+        characterName === "iori" && characterState === "neomax"
+          ? { top: "-20px" }
+          : {}
+      }
+    >
+      {/* Kyo's effect */}
+      {characterState === "neomax" && characterName === "kyo" && (
         <FireRing animationState="active"></FireRing>
       )}
+
+      {/* Iori's effect */}
+      {characterState === "neomax" &&
+        characterName === "iori" &&
+        "somethingels"}
       <motion.div>
         <img
           src={getGif(characterName, characterState)}
-          alt={`Kyo is ${characterState}`}
-          className="character-image"
-          style={
-            characterState === "running-back"
-              ? {
-                  transform: "scaleX(-1)",
-                }
-              : undefined
-          }
+          alt={`Character is ${characterState}`}
+          className={characterName + "-character-image"}
+          style={{
+            ...(characterState === "running-back" && {
+              transform: "scaleX(-1)",
+            }),
+            ...(characterName === "iori" &&
+              characterState === "neomax" && {
+                top: "20px",
+                width: "300px",
+                height: "230px",
+              }),
+          }}
         />
       </motion.div>
     </div>

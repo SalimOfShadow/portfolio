@@ -108,22 +108,30 @@ function App() {
               initial={{
                 x:
                   characterState === "running-back"
-                    ? pageDimensions.width / 2 - 300
-                    : 0,
+                    ? pageDimensions.width / 2 -
+                      (characterName === "kyo" ? 300 : -300) // Center with offset based on character
+                    : characterName === "kyo"
+                    ? -300 // Off-screen left for Kyo
+                    : pageDimensions.width + 300, // Off-screen right for Iori
               }}
               animate={{
                 x:
                   characterState === "running-back"
-                    ? 0
-                    : pageDimensions.width / 2 - 300,
+                    ? characterName === "kyo"
+                      ? -300 // Back to off-screen left for Kyo
+                      : pageDimensions.width + 300 // Back to off-screen right for Iori
+                    : pageDimensions.width / 2 -
+                      (characterName === "kyo" ? 300 : -300), // Near-center position
               }}
               transition={{ duration: 1.5 }}
               onAnimationComplete={() => {
                 if (characterState === "running") {
                   setCharacterState("neomax");
                   setTimeout(() => {
-                    setExplosionsActive(true);
-                    setTimeout(() => setPfpAnimation("quake"), 100);
+                    if (characterName === "kyo") {
+                      setExplosionsActive(true);
+                      setTimeout(() => setPfpAnimation("quake"), 100);
+                    }
                   }, 1200);
                 } else if (characterState === "running-back")
                   setCharacterPresent(false);
@@ -137,17 +145,29 @@ function App() {
             </motion.div>
           ) : (
             <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
-              }}
+              style={(() => {
+                if (characterName === "kyo") {
+                  return {
+                    position: "absolute",
+                    top: 0,
+                    left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
+                  };
+                } else if (characterName === "iori") {
+                  return {
+                    position: "absolute",
+                    top: 0,
+                    left: `${pageDimensions.width / 2 + 300}px`, // Set to final position when standing
+                  };
+                } else {
+                  return {};
+                }
+              })()}
             >
               <Character
                 characterState={characterState}
                 setCharacterState={setCharacterState}
                 characterName={characterName}
-              />
+              ></Character>
             </div>
           )}
         </div>
