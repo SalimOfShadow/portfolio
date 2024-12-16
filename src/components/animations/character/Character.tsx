@@ -11,11 +11,12 @@ import { FireRing } from "../kyo/fire-ring/FireRing";
 // Iori
 import ioriRunningGif from "../../../assets/characters-gif/iori/test-iori-running.gif";
 import ioriStandingGif from "../../../assets/characters-gif/iori/test-iori-winpose.gif";
-import ioriNeomaxGif from "../../../assets/characters-gif/iori/test-iori-neomax.gif";
+import ioriNeomaxGif from "../../../assets/characters-gif/iori/iori-neomax.gif";
 import ioriFinalGif from "../../../assets/characters-gif/iori/test-iori-final.gif";
 
 import "./character.css";
 import { motion } from "framer-motion";
+import { Scratch } from "../iori/scratch/Scratch";
 
 export type CharacterName = "kyo" | "iori";
 
@@ -71,7 +72,7 @@ export const Character: React.FC<CharacterProps> = ({
     if (characterState === "neomax" && characterName === "iori")
       setTimeout(() => {
         setCharacterState("standing");
-      }, 121800); // 11
+      }, 1700); // 11
   }, [characterState]);
 
   return (
@@ -79,7 +80,7 @@ export const Character: React.FC<CharacterProps> = ({
       className={characterName + "-character"}
       style={
         characterName === "iori" && characterState === "neomax"
-          ? { top: "-20px" }
+          ? { top: "-35px" }
           : {}
       }
     >
@@ -89,9 +90,9 @@ export const Character: React.FC<CharacterProps> = ({
       )}
 
       {/* Iori's effect */}
-      {characterState === "neomax" &&
-        characterName === "iori" &&
-        "somethingels"}
+      {characterState === "neomax" && characterName === "iori" && (
+        <Scratch animationState="active" />
+      )}
       <motion.div>
         <img
           src={getGif(characterName, characterState)}
@@ -103,13 +104,19 @@ export const Character: React.FC<CharacterProps> = ({
             }),
             ...(characterName === "iori" &&
               characterState === "neomax" && {
-                top: "20px",
                 width: "300px",
                 height: "230px",
               }),
           }}
         />
       </motion.div>
+      <button
+        onClick={() => {
+          setCharacterState("neomax");
+        }}
+      >
+        NEOMAX
+      </button>
     </div>
   );
 };

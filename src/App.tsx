@@ -178,7 +178,7 @@ function App() {
             setCharacterState("running-back");
             const wait = (ms: number | undefined) =>
               new Promise((resolve) => setTimeout(resolve, ms));
-            await wait(2000);
+            await wait(1803);
             const newTheme = changeTheme(theme);
             setTheme(newTheme);
 
