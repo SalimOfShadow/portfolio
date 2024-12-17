@@ -36,7 +36,7 @@ function App() {
   const [characterState, setCharacterState] =
     useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
-  const [characterName, setCharacterName] = useState<CharacterName>("kyo");
+  const [characterName, setCharacterName] = useState<CharacterName>("iori");
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
   const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>("idle");
@@ -140,6 +140,12 @@ function App() {
                       setTimeout(() => setPfpAnimation("idle"), 1300); // Makes it so it happens everytime kyo reappears
                     }
                   }, 1200);
+                  setTimeout(() => {
+                    if (characterName === "iori") {
+                      setTimeout(() => setPfpAnimation("scratched"), 100);
+                      setTimeout(() => setPfpAnimation("idle"), 1300); // Makes it so it happens everytime kyo reappears
+                    }
+                  }, 600);
                 } else if (characterState === "running-back")
                   setCharacterPresent(false);
               }}
