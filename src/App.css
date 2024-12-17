@@ -192,10 +192,12 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: -600;
 }
 .pfp img {
   max-width: 150px;
   border-radius: 50%;
+  z-index: -600;
 }
 /* hero styles end */
 

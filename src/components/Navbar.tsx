@@ -30,7 +30,7 @@ const Navbar = (props) => {
         <div className="logo">
           <a href="index.html">
             {"Salim"}
-            <span style={{ color: darkThemeStyles[theme] }}>{"   KOF"}</span>
+            <span style={{ color: headerColors[theme] }}>{"   KOF"}</span>
           </a>
         </div>
         <input type="checkbox" id="menu-toggle" />

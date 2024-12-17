@@ -25,6 +25,8 @@ import profilePicture from "./assets/profile-picture.png";
 import { Explosion } from "./components/animations/kyo/explosion/Explosion";
 import { changeTheme, useTheme } from "./contexts/ThemeContext";
 
+const characterArray: CharacterName[] = ["kyo", "iori"];
+
 function App() {
   const controls = useAnimation();
   const { theme, setTheme } = useTheme();
@@ -55,11 +57,15 @@ function App() {
           <Explosion
             animationState="active"
             distance={`${currentDistance}px`}
-            key={1337 + i}
+            key={(Date.now() % 1000) + i}
           />,
         ]);
       }, i * 250); // Delay by 0.5 seconds for each component
     }
+
+    setTimeout(() => {
+      setExplosionsActive(false); // Adjust this as needed for your logic
+    }, 1250); // Total time of explosions
   }, [explosionsActive]);
 
   useEffect(() => {
@@ -131,6 +137,7 @@ function App() {
                     if (characterName === "kyo") {
                       setExplosionsActive(true);
                       setTimeout(() => setPfpAnimation("quake"), 100);
+                      setTimeout(() => setPfpAnimation("idle"), 1300); // Makes it so it happens everytime kyo reappears
                     }
                   }, 1200);
                 } else if (characterState === "running-back")
@@ -183,7 +190,12 @@ function App() {
             setTheme(newTheme);
 
             setCharacterPresent(true);
-            setCharacterName("iori");
+            setCharacterName(
+              characterArray[
+                (characterArray.indexOf(characterName) + 1) %
+                  characterArray.length
+              ]
+            );
             setCharacterState("running");
 
             console.log(characterName);

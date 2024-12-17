@@ -1,10 +1,12 @@
 .scratch-start {
   position: absolute;
-  transform: translateY(320%);
+  transform: translateY(250%);
+  z-index: 1000;
 }
 
 .scratch-start-img {
-  width: 130px;
+  width: 100px;
   position: relative;
-  transform: translateX(120px);
+  transform: translateX(80px);
+  z-index: 1000;
 }

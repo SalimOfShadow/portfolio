@@ -16,7 +16,7 @@ export const ScratchStart = (props: ScratchStartProps) => {
   if (animationState === "active") {
     setTimeout(() => {
       setAnimationState("inactive");
-    }, 1800);
+    }, 300);
   }
   return (
     <>

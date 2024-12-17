@@ -17,12 +17,13 @@ const Hero = (props: HeroProps) => {
   const [pfpStatus, setPfpStatus] = useState<string>(props.status);
 
   useEffect(() => {
-    console.log(props.status);
-    setPfpStatus(props.status);
     if (props.status === "quake") {
+      setPfpStatus("quake");
       setTimeout(() => setPfpStatus("idle"), 1400);
+    } else {
+      setPfpStatus(props.status);
     }
-  }, [props.status]);
+  }, [props.status]); // Depend on props.status, not pfpStatus
 
   const quakeAnimation = {
     quake: {
@@ -30,7 +31,6 @@ const Hero = (props: HeroProps) => {
       y: [0, -10, 5, 10, -5, 0],
       rotate: [0, 10, 20, 30, 20, 10, 0, -10, -20, -30, -20, -10, 0],
       transition: { duration: 0.32, repeat: Infinity, ease: "easeInOut" },
-
       scale: 1,
     },
     idle: {
@@ -64,7 +64,9 @@ const Hero = (props: HeroProps) => {
     </div>
   );
 };
+
 export default Hero;
+
 Hero.propTypes = {
   img: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
