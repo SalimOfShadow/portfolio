@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "../App.css";
 import {
   darkThemeStyles,
+  themeShadows,
   themeStyles,
   useTheme,
 } from "../contexts/ThemeContext";
@@ -53,7 +54,13 @@ const Navbar = (props) => {
             <a
               href="#contact"
               className={`navbar-btn`}
-              style={{ backgroundColor: themeStyles[theme] }}
+              style={{
+                backgroundColor: themeStyles[theme],
+                boxShadow:
+                  theme === "blue"
+                    ? `0 8px 32px 0 rgba(31, 41, 135, 0.37)` // Blue shadow for blue theme
+                    : `0 8px 32px 0 rgba(135, 41, 31, 0.37)`, // Red shadow for red theme
+              }}
             >
               Contact Me
             </a>
