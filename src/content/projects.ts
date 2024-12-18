@@ -1,31 +1,31 @@
 //projects start
 const projects = [
   {
-    name: "Recca",
+    name: 'Recca',
     description:
       "An Electron application that integrates Python with OpenCV for template matching and OBS's WebSocket API to detect the game process and create scenes dynamically. It captures and uploads segments of gameplay to video-sharing platforms like YouTube and Streamable, while also serving as a repository for upload entries, storing each user's uploads in MongoDB.",
-    stack: ["React", "NodeJS", "Express", "MongoDB", "Python", "Electron"],
-    sourceCode: "https://github.com/SalimOfShadow/Recca",
-    img: "/kamernet-bot.png",
-    preview: "https://github.com/SalimOfShadow/Recca/",
+    stack: ['React', 'NodeJS', 'Express', 'MongoDB', 'Python', 'Electron'],
+    sourceCode: 'https://github.com/SalimOfShadow/Recca',
+    img: '/recca.png',
+    preview: 'https://github.com/SalimOfShadow/Recca/',
   },
   {
-    name: "Kamernet-bot",
+    name: 'Kamernet-bot',
     description:
-      "A Typescript bot that automatically replies to insertions matching personalized criterias on a popular site named Kamernet. Using a patched version of Puppeteer and randomizing interactions with the website to behave like a human as much as possible, it is able to pass various tests on bot detection sites. It can run both locally or inside a docker container.",
-    stack: ["React", "NodeJS", "Express", "MongoDB"],
-    sourceCode: "https://github.com/randilt/cyberscourge-hub",
-    img: "/kamernet-bot.png",
-    preview: "https://rtharusha.tech",
+      'A Typescript bot that automatically replies to insertions matching personalized criterias on a popular site named Kamernet. Using a patched version of Puppeteer and randomizing interactions with the website to behave like a human as much as possible, it is able to pass various tests on bot detection sites. It can run both locally or inside a docker container.',
+    stack: ['React', 'NodeJS', 'Express', 'MongoDB'],
+    sourceCode: 'https://github.com/randilt/cyberscourge-hub',
+    img: '/kamernet-bot.png',
+    preview: 'https://rtharusha.tech',
   },
   {
-    name: "Scala Image Converter",
+    name: 'Scala Image Converter',
     description:
       "A GUI interface that uses ScalaFX to modify,convert between different formats and upload pictures. I've written this piece of software to familiarize with the language while also improving the quality of my unit tests.",
-    stack: ["React", "NodeJS", "Express", "MongoDB"],
-    sourceCode: "https://github.com/randilt/notion-clone",
-    img: "/kamernet-bot.png",
-    preview: "#",
+    stack: ['React', 'NodeJS', 'Express', 'MongoDB'],
+    sourceCode: 'https://github.com/randilt/notion-clone',
+    img: '/scalafx.png',
+    preview: '#',
   },
 ];
 
