@@ -38,10 +38,21 @@ const ContactForm = () => {
             {socials.map((social, index) => (
               <a
                 key={index}
-                href={social.url}
-                style={{ boxShadow: `0 8px 32px 0 ${darkThemeStyles[theme]}` }}
+                style={{
+                  boxShadow:
+                    theme === "blue"
+                      ? `0 8px 32px 0 rgba(31, 41, 135, 0.37)` // Blue shadow for blue theme
+                      : `0 8px 32px 0 rgba(135, 41, 31, 0.37)`, // Red shadow for red theme
+                }}
               >
-                <img src={`/socials/${social.icon}`} alt="" />
+                <img
+                  src={`/socials/${social.icon}`}
+                  alt=""
+                  onClick={() => {
+                    window.open(social.url, "_blank");
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
               </a>
             ))}
           </div>

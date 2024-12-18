@@ -549,12 +549,15 @@ form > input[type="submit"]:hover {
 #typed {
   font-weight: bold;
   color: #394cfa;
+  line-height: 1.2; /* Match your overall text line height */
+  transition: 0.2s;
 }
 
 .cursor {
   display: inline-block;
   background-color: #394cfa;
   animation: blinker 800ms infinite;
+  transition: 0.2s;
 }
 
 .cursor.typing-true {

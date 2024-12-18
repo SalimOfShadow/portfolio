@@ -24,6 +24,7 @@ import { CharacterState } from "./contexts/CharacterContext";
 import profilePicture from "./assets/profile-picture.png";
 import { Explosion } from "./components/animations/kyo/explosion/Explosion";
 import { changeTheme, useTheme } from "./contexts/ThemeContext";
+import HeroHeading from "./components/HeroHeading";
 
 const characterArray: CharacterName[] = ["kyo", "iori"];
 
@@ -218,8 +219,9 @@ function App() {
         <div>{explosions}</div>
       </div>
       {}
-      <div className="hr"></div>
 
+      <div className="hr"></div>
+      <HeroHeading></HeroHeading>
       <section id="projects">
         <Heading firstWord="My" secondWord="Projects" />
         <motion.div
