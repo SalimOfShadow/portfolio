@@ -19,9 +19,9 @@ const projects = [
     preview: "https://rtharusha.tech",
   },
   {
-    name: "Jotion (Notion Clone)",
+    name: "Scala Image Converter",
     description:
-      "A clone of the popular note taking app Notion. This app is built using Nextjs 13 and Tailwind CSS. It uses clerk for authentication and convex for its real time database. The project is not yet complete ",
+      "A GUI interface that uses ScalaFX to modify,convert between different formats and upload pictures. I've written this piece of software to familiarize with the language while also improving the quality of my unit tests.",
     stack: ["React", "NodeJS", "Express", "MongoDB"],
     sourceCode: "https://github.com/randilt/notion-clone",
     img: "/kamernet-bot.png",

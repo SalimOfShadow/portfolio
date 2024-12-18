@@ -9,7 +9,7 @@ const Heading = (props) => {
       <h1>
         &lt;
         {props.firstWord}
-        <span className={theme}>{props.secondWord}/&gt;</span>
+        <span className={theme} style={{transition: "0.2s"}}>{props.secondWord}/&gt;</span>
       </h1>
     </div>
   );

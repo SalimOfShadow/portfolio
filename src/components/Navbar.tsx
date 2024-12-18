@@ -25,6 +25,7 @@ const Navbar = (props) => {
       style={{
         boxShadow: `0 8px 32px 0 ${headerColors[theme]}`,
         marginBottom: "70px",
+        transition: "0.2s"
       }}
     >
       <nav>

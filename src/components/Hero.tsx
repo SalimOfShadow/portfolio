@@ -43,7 +43,6 @@ const Hero = (props: HeroProps) => {
     idle: {
       x: 0,
       y: 0,
-      rotate: 0,
       scale: 1,
     },
     quake: {
@@ -54,21 +53,14 @@ const Hero = (props: HeroProps) => {
       scale: 1,
     },
     scratched: {
-      x: [
-        0, -15, 10, -20, 15, -30, 10, -25, 0, 20, -15, 5, -25, 15, -10, 25, 0,
-        -30, 20, -10, 15, -20, 10, -25, 0, 30, -10, 20, -25, 0, -30, 10, -20,
-        15, -10, 0, -25, 10, 20, -15, 0, 30, -10, 5, 15, -20, 0, -30, 10, -20,
-        0,
-      ],
-      y: [0, -80, 0],
-      rotate: [
-        0, 360, 0, 360, 0, -360, 0, 360, 0, 360, 0, 0, 360, 0, 360, 0, 360, 0,
-        360, 0, 0, 360, 0, 360, 0, 0, 360, 0, 360, 0, 0, 360, 0, 360, 0, 0, 360,
-      ],
-      transition: { duration: 1.1, repeat: Infinity, ease: "easeInOut" },
+      rotate: [0, -30, -60, -90, -120, -150, -180, -210, -240, -270, -300, -330, -360],
+      transition: { 
+        duration: 1.1, 
+        ease: "easeInOut",
+        repeat: 0,
+      },
       scale: 1,
-    },
-  };
+    },}
 
   return (
     <div className="profile-container">

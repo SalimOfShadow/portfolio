@@ -222,7 +222,7 @@ function App() {
 
       <div className="hr"></div>
       <HeroHeading></HeroHeading>
-      <section id="projects">
+      <section id="projects" >
         <Heading firstWord="My" secondWord="Projects" />
         <motion.div
           className="project-map"
