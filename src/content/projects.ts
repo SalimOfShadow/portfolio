@@ -3,7 +3,7 @@ const projects = [
   {
     name: 'Recca',
     description:
-      "An Electron application that integrates Python with OpenCV for template matching and OBS's WebSocket API to detect the game process and create scenes dynamically. It captures and uploads segments of gameplay to video-sharing platforms like YouTube and Streamable, while also serving as a repository for upload entries, storing each user's uploads in MongoDB.",
+      "An Electron application that integrates Python with OpenCV for template matching and OBS's WebSocket API to detect a game's process and create scenes dynamically. It captures and uploads segments of gameplay to video-sharing platforms like YouTube and Streamable, while also serving as a repository for upload entries, storing each user's uploads in MongoDB.",
     stack: ['React', 'NodeJS', 'Express', 'MongoDB', 'Python', 'Electron'],
     sourceCode: 'https://github.com/SalimOfShadow/Recca',
     img: '/recca.png',
