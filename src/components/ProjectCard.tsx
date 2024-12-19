@@ -1,8 +1,8 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { FaGithub } from "react-icons/fa";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { themeShadows, useTheme } from "../contexts/ThemeContext";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt } from 'react-icons/fa';
+import { themeShadows, useTheme } from '../contexts/ThemeContext';
 // import { motion } from "framer-motion";
 const ProjectCard = (props) => {
   const { theme, setTheme } = useTheme();
@@ -17,7 +17,13 @@ const ProjectCard = (props) => {
       style={{ boxShadow: `0 8px 32px 0 ${themeShadows[theme]}` }}
     >
       <div className="project-img">
-        <img src={props.img} alt={props.name} />
+        <img
+          src={props.img}
+          alt={props.name}
+          onClick={() => {
+            window.open(props.source, '_blank');
+          }}
+        />
       </div>
       <div className="project-title">
         <h2>{props.name}</h2>

@@ -14,16 +14,16 @@ const projects = [
     description:
       'A Typescript bot that automatically replies to insertions matching personalized criterias on a popular site named Kamernet. Using a patched version of Puppeteer and randomizing interactions with the website to behave like a human as much as possible, it is able to pass various tests on bot detection sites. It can run both locally or inside a docker container.',
     stack: ['React', 'NodeJS', 'Express', 'MongoDB'],
-    sourceCode: 'https://github.com/randilt/cyberscourge-hub',
+    sourceCode: 'https://github.com/SalimOfShadow/Kamernet-Bot/',
     img: '/kamernet-bot.png',
-    preview: 'https://rtharusha.tech',
+    preview: 'https://github.com/SalimOfShadow/Kamernet-Bot/',
   },
   {
     name: 'Scala Image Converter',
     description:
       "A GUI interface that uses ScalaFX to modify,convert between different formats and upload pictures. I've written this piece of software to familiarize with the language while also improving the quality of my unit tests.",
     stack: ['React', 'NodeJS', 'Express', 'MongoDB'],
-    sourceCode: 'https://github.com/randilt/notion-clone',
+    sourceCode: 'https://github.com/SalimOfShadow/ScalaImgTool',
     img: '/scalafx.png',
     preview: '#',
   },

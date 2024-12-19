@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { motion } from "framer-motion";
-import { CharacterState } from "../contexts/CharacterContext";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
+import { CharacterState } from '../contexts/CharacterContext';
 
-export type PfpAnimation = "idle" | "quake" | "scratched" | "frozen";
+export type PfpAnimation = 'idle' | 'quake' | 'scratched' | 'frozen';
 
 interface HeroProps {
   img: string;
@@ -17,8 +17,10 @@ const Hero = (props: HeroProps) => {
   const [pfpStatus, setPfpStatus] = useState<string>(props.status);
   const [canInteract, setCanInteract] = useState<boolean>(false);
 
+  let currentRotation: number = -360; // used this variable to fix the profile picture snapping back
+
   useEffect(() => {
-    if (props.characterState === "final") {
+    if (props.characterState === 'final') {
       setCanInteract(true);
     } else {
       setTimeout(() => {
@@ -28,12 +30,13 @@ const Hero = (props: HeroProps) => {
   }, [props.characterState]);
 
   useEffect(() => {
-    if (props.status === "quake") {
-      setPfpStatus("quake");
-      setTimeout(() => setPfpStatus("idle"), 1400);
-    } else if (props.status === "scratched") {
-      setPfpStatus("scratched");
-      setTimeout(() => setPfpStatus("idle"), 1400);
+    if (props.status === 'quake') {
+      setPfpStatus('quake');
+      setTimeout(() => setPfpStatus('idle'), 1400);
+    } else if (props.status === 'scratched') {
+      currentRotation -= 360;
+      setPfpStatus('scratched');
+      setTimeout(() => setPfpStatus('idle'), 1400);
     } else {
       setPfpStatus(props.status);
     }
@@ -43,24 +46,35 @@ const Hero = (props: HeroProps) => {
     idle: {
       x: 0,
       y: 0,
+      rotate: currentRotation,
       scale: 1,
     },
     quake: {
       x: [0, -10, 10, -5, 5, 0],
       y: [0, -10, 5, 10, -5, 0],
       rotate: [0, 10, 20, 30, 20, 10, 0, -10, -20, -30, -20, -10, 0],
-      transition: { duration: 0.32, repeat: Infinity, ease: "easeInOut" },
+      transition: { duration: 0.32, repeat: Infinity, ease: 'easeInOut' },
       scale: 1,
     },
     scratched: {
-      rotate: [0, -30, -60, -90, -120, -150, -180, -210, -240, -270, -300, -330, -360],
-      transition: { 
-        duration: 1.1, 
-        ease: "easeInOut",
-        repeat: 0,
+      x: [
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
+        0, -20, 20, -15, 15, 0,
+      ],
+      y: [0, -80, -80, 0, 0, 0],
+      rotate: [0, -360],
+      transition: {
+        duration: 1.15,
+        ease: 'easeInOut',
       },
       scale: 1,
-    },}
+    },
+  };
 
   return (
     <div className="profile-container">
@@ -69,7 +83,7 @@ const Hero = (props: HeroProps) => {
         animate={pfpStatus}
         variants={animations}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 260,
           damping: 20,
         }}
@@ -78,7 +92,7 @@ const Hero = (props: HeroProps) => {
           canInteract
             ? {
                 scale: 1.1,
-                borderRadius: "100%",
+                borderRadius: '100%',
               }
             : {}
         }
