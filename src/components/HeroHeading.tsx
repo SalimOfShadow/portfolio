@@ -4,7 +4,7 @@ const totype = [
   "Salim 🙋🏽‍♂️",
   "A Tech Enthusiast 🤖",
   "A Web Developer 🌐",
-  "Costantly learning new skills 🛠️",
+  "Always learning new skills 🛠️",
   "In love with programming ❤️",
   "A Gamer 🕹️",
 ];
