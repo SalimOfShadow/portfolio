@@ -1,0 +1,11 @@
+.profile-glow-effect{
+}
+.profile-glow-image{
+    position: absolute;
+    max-width: 2000px;
+    width: 150px;
+    margin-left: -150px;
+    margin-top: -80px;
+    transition: 0.3s;
+    overflow: visible; 
+}

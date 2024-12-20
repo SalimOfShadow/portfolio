@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { CharacterState } from '../contexts/CharacterContext';
+import profileAnimation from "./animations/profile-picture/glow-effect.gif"
+import "./animations/profile-picture/profile-animation.css"
+
 
 export type PfpAnimation = 'idle' | 'quake' | 'scratched' | 'frozen';
 
@@ -52,7 +55,7 @@ const Hero = (props: HeroProps) => {
     quake: {
       x: [0, -10, 10, -5, 5, 0],
       y: [0, -10, 5, 10, -5, 0],
-      rotate: [0, 10, 20, 30, 20, 10, 0, -10, -20, -30, -20, -10, 0],
+      rotate: [currentRotation, currentRotation + 10, currentRotation +20, currentRotation +30,  currentRotation+ 20, currentRotation+ 10, currentRotation, currentRotation -10, currentRotation-20, currentRotation -30, currentRotation-20, currentRotation-10, currentRotation],
       transition: { duration: 0.32, repeat: Infinity, ease: 'easeInOut' },
       scale: 1,
     },
@@ -66,7 +69,7 @@ const Hero = (props: HeroProps) => {
         0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0, 0, -20, 20, -15, 15, 0,
         0, -20, 20, -15, 15, 0,
       ],
-      y: [0, -80, -80, 0, 0, 0],
+      y: [0, -80, -80, -80, -20, 0],
       rotate: [0, -360],
       transition: {
         duration: 1.15,
@@ -90,15 +93,22 @@ const Hero = (props: HeroProps) => {
         whileHover={canInteract ? { scale: 1.2 } : {}}
         whileTap={
           canInteract
-            ? {
-                scale: 1.1,
-                borderRadius: '100%',
-              }
-            : {}
+          ? {
+            scale: 1.1,
+            borderRadius: '100%',
+          }
+          : {}
         }
-        className="pfp"
-      >
-        <img src={props.img} alt="" />
+          className="pfp"
+          >
+        <img src={props.img} alt="" />{
+          canInteract && 
+          <>
+          <motion.div >
+          <img src={profileAnimation} className='profile-glow-image'></img>
+          </motion.div>
+          </>
+        }
       </motion.div>
     </div>
   );

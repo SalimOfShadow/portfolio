@@ -72,7 +72,7 @@ export const Character: React.FC<CharacterProps> = ({
     if (characterState === "neomax" && characterName === "iori")
       setTimeout(() => {
         setCharacterState("standing");
-      }, 1700); // 11
+      }, 1850); // 11
   }, [characterState]);
 
   return (
@@ -110,13 +110,6 @@ export const Character: React.FC<CharacterProps> = ({
           }}
         />
       </motion.div>
-      <button
-        onClick={() => {
-          setCharacterState("neomax");
-        }}
-      >
-        NEOMAX
-      </button>
     </div>
   );
 };

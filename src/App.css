@@ -35,6 +35,8 @@ body {
   margin: 0;
   height: 100vh;
   font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+
 }
 .profile-container {
   display: fixed;
