@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 const totype = [
+  "Salim 🙋🏽‍♂️",
   "A Tech Enthusiast 🤖",
   "A Web Developer 🌐",
   "Costantly learning new skills 🛠️",
