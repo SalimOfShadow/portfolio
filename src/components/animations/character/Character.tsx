@@ -1,6 +1,5 @@
 // Character.tsx
 import React, { useEffect } from "react";
-import { useCharacter } from "../../../contexts/CharacterContext"; // Importing the custom hook
 import { CharacterState } from "../../../contexts/CharacterContext";
 // Kyo
 import kyoRunningGif from "../../../assets/characters-gif/kyo/kyo-running.gif";

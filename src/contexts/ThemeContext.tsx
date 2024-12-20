@@ -66,6 +66,5 @@ export const useTheme = (): ThemeContextState => {
 
 export function changeTheme(theme: Theme): Theme {
   const themeArray: Theme[] = ["blue", "red"];
-  console.log("Should happen");
   return themeArray[(themeArray.indexOf(theme) + 1) % themeArray.length];
 }

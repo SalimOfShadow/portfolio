@@ -12,7 +12,6 @@ interface HeroProps {
   title: string;
   status: PfpAnimation;
   characterState: CharacterState;
-  glowEffect: number;
 }
 
 const Hero = (props: HeroProps) => {

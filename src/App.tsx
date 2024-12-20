@@ -37,18 +37,15 @@ function App() {
   const [characterState, setCharacterState] =
     useState<CharacterState>("running");
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
-  const [characterName, setCharacterName] = useState<CharacterName>("iori");
+  const [characterName, setCharacterName] = useState<CharacterName>(
+    characterArray[Math.floor(Math.random() * characterArray.length)]
+  );
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
   const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>("idle");
 
   useEffect(() => {
-    console.log("Updated characterName:", characterName);
-  }, [characterName]);
-
-  useEffect(() => {
     if (!explosionsActive) return;
-    console.log(explosionsActive);
     let currentDistance = 0;
     for (let i = 0; i < 5; i++) {
       setTimeout(() => {
@@ -96,10 +93,6 @@ function App() {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
   };
-
-  useEffect(() => {
-    console.log("Updated characterState:", characterState); // Logs the updated state
-  }, [characterState]);
 
   return (
     <>
@@ -204,8 +197,6 @@ function App() {
               ]
             );
             setCharacterState("running");
-
-            console.log(characterName);
           }
         }}
       >
