@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { AnimatePresence, motion } from "framer-motion";
-import { CharacterState } from "../contexts/CharacterContext";
-import profileAnimation from "./animations/profile-picture/glow-effect.gif";
-import "./animations/profile-picture/profile-animation.css";
-export type PfpAnimation = "idle" | "quake" | "scratched" | "frozen";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { AnimatePresence, motion } from 'framer-motion';
+import { CharacterState } from '../contexts/CharacterContext';
+import profileAnimation from './animations/profile-picture/glow-effect.gif';
+import './animations/profile-picture/profile-animation.css';
+import useWindowDimensions from '../hooks/useWindowDimensions';
+import { changeTheme, useTheme } from '../contexts/ThemeContext';
 
+export type PfpAnimation = 'idle' | 'quake' | 'scratched' | 'frozen';
 interface HeroProps {
   img: string;
   description: string;
@@ -18,17 +20,31 @@ const Hero = (props: HeroProps) => {
   const [pfpStatus, setPfpStatus] = useState<string>(props.status);
   const [canInteract, setCanInteract] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(0);
-  const [brightness, setBrightness] = useState<string>("100%");
-
+  const [brightness, setBrightness] = useState<string>('100%');
+  const pageDimensions: { width: number; height: number } =
+    useWindowDimensions();
+  const [isPageMobile, setIsPageMobile] = useState<boolean>(
+    pageDimensions.width < 1242 ? true : false
+  );
+  const { theme, setTheme } = useTheme();
   let currentRotation: number = -360;
 
   useEffect(() => {
-    if (props.characterState === "final") {
+    if (pageDimensions.width < 1242) {
+      setIsPageMobile(true);
+    } else {
+      setIsPageMobile(false);
+    }
+    console.log(isPageMobile);
+  }, [pageDimensions.width]);
+
+  useEffect(() => {
+    if (props.characterState === 'final' || isPageMobile) {
       setOpacity(1);
       setCanInteract(true);
     } else {
       setOpacity(0);
-      setBrightness("100%");
+      setBrightness('100%');
       setTimeout(() => {
         setCanInteract(false);
       }, 400);
@@ -36,13 +52,13 @@ const Hero = (props: HeroProps) => {
   }, [props.characterState]);
 
   useEffect(() => {
-    if (props.status === "quake") {
-      setPfpStatus("quake");
-      setTimeout(() => setPfpStatus("idle"), 1400);
-    } else if (props.status === "scratched") {
+    if (props.status === 'quake') {
+      setPfpStatus('quake');
+      setTimeout(() => setPfpStatus('idle'), 1400);
+    } else if (props.status === 'scratched') {
       currentRotation -= 360;
-      setPfpStatus("scratched");
-      setTimeout(() => setPfpStatus("idle"), 1400);
+      setPfpStatus('scratched');
+      setTimeout(() => setPfpStatus('idle'), 1400);
     } else {
       setPfpStatus(props.status);
     }
@@ -73,7 +89,7 @@ const Hero = (props: HeroProps) => {
         currentRotation - 10,
         currentRotation,
       ],
-      transition: { duration: 0.32, repeat: Infinity, ease: "easeInOut" },
+      transition: { duration: 0.32, repeat: Infinity, ease: 'easeInOut' },
       scale: 1,
     },
     scratched: {
@@ -90,7 +106,7 @@ const Hero = (props: HeroProps) => {
       rotate: [0, -360],
       transition: {
         duration: 1.15,
-        ease: "easeInOut",
+        ease: 'easeInOut',
       },
       scale: 1,
     },
@@ -103,27 +119,27 @@ const Hero = (props: HeroProps) => {
         animate={pfpStatus}
         variants={animations}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 260,
           damping: 20,
         }}
         whileHover={
           canInteract && opacity !== 0
-            ? { scale: 1.2, filter: "brightness(115%)" }
+            ? { scale: 1.2, filter: 'brightness(115%)' }
             : { filter: `brightness(${brightness}) ` }
         }
         whileTap={
           canInteract
             ? {
                 scale: 1.25,
-                filter: "brightness(125%)",
+                filter: 'brightness(125%)',
               }
             : {}
         }
         className="pfp"
       >
         <img src={props.img} alt="" style={{ width: 150 }} />
-        {canInteract && (
+        {(canInteract || isPageMobile) && (
           <motion.div
             key="glow"
             initial={{ opacity: 0 }}
@@ -136,6 +152,15 @@ const Hero = (props: HeroProps) => {
               className="profile-glow-image"
               alt="Glow effect"
               style={{ opacity }}
+              onClick={async () => {
+                if (isPageMobile) {
+                  const wait = (ms: number | undefined) =>
+                    new Promise((resolve) => setTimeout(resolve, ms));
+                  await wait(200);
+                  const newTheme = changeTheme(theme);
+                  setTheme(newTheme);
+                }
+              }}
             />
           </motion.div>
         )}
