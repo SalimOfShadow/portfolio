@@ -37,7 +37,7 @@ const Skill = (props: { skill: string; url: string }) => {
           }}
           animate={controls}
           whileHover={animationConfig}
-          onTapStart={() => {
+          onTouchStart={() => {
             controls.start(animationConfig);
           }}
         >
