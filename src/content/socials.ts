@@ -17,6 +17,7 @@ const socials = [
     url: 'https://youtube.com/@SalimOfShadow',
   },
   { icon: 'steam.svg', url: 'https://steamcommunity.com/id/salimofshadow/' },
+  { icon: 'telegram.svg', url: 'https://t.me/chiarissimamente' },
 ];
 
 export default socials;

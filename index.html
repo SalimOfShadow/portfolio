@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
+    <title>SalimOfShadow's website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link
       rel="preload"
       href="./src/assets/characters-gif/kyo/kyo-running.gif"
@@ -44,6 +45,40 @@
       href="./src/assets/characters-gif/iori/test-iori-final.gif"
       as="image"
     />
+    <script>
+      var favicon_images = [
+        './public/orochi-stand/orochi-stand-00.gif',
+        './public/orochi-stand/orochi-stand-01.gif',
+        './public/orochi-stand/orochi-stand-02.gif',
+        './public/orochi-stand/orochi-stand-03.gif',
+        './public/orochi-stand/orochi-stand-04.gif',
+        './public/orochi-stand/orochi-stand-05.gif',
+        './public/orochi-stand/orochi-stand-06.gif',
+        './public/orochi-stand/orochi-stand-07.gif',
+        './public/orochi-stand/orochi-stand-08.gif',
+        './public/orochi-stand/orochi-stand-09.gif',
+        './public/orochi-stand/orochi-stand-10.gif',
+        './public/orochi-stand/orochi-stand-11.gif',
+      ];
+      image_counter = 0; // To keep track of the current image
+
+      setInterval(function () {
+        // Remove current favicon
+        var existingIcons = document.querySelectorAll(
+          "link[rel='icon'], link[rel='shortcut icon']"
+        );
+        existingIcons.forEach((icon) => icon.remove());
+
+        // Add new favicon image
+        var newIcon = document.createElement('link');
+        newIcon.rel = 'icon';
+        newIcon.href = favicon_images[image_counter];
+        document.head.appendChild(newIcon);
+
+        // If last image, go to first image; else, go to the next image
+        image_counter = (image_counter + 1) % favicon_images.length;
+      }, 200); // 200 milliseconds interval
+    </script>
   </head>
   <body>
     <div id="root"></div>
