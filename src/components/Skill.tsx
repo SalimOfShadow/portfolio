@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import wipImage from "../assets/5578703.png";
-import "../App.css";
-import { animate, motion } from "framer-motion";
-import { themeShadows, useTheme } from "../contexts/ThemeContext";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import wipImage from '../assets/5578703.png';
+import '../App.css';
+import { animate, motion, useAnimation } from 'framer-motion';
+import { themeShadows, useTheme } from '../contexts/ThemeContext';
+const animationConfig = {
+  scale: 1,
+  rotate: [
+    5, 10, 15, 20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0, 5, 10, 15,
+    20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0,
+  ],
+  transition: { duration: 0.5, ease: 'easeInOut' },
+};
 const Skill = (props: { skill: string; url: string }) => {
+  const controls = useAnimation();
   const [WIP, setIsWIP] = useState<boolean>(false);
   const { theme } = useTheme();
   useEffect(() => {
     if (
       props.skill.substring(props.skill.length - 7, props.skill.length - 4) ===
-      "WIP"
+      'WIP'
     )
       setIsWIP(true);
   }, [WIP]);
@@ -26,13 +35,10 @@ const Skill = (props: { skill: string; url: string }) => {
           initial={{
             scale: 1,
           }}
-          whileHover={{
-            scale: 1,
-            rotate: [
-              5, 10, 15, 20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0,
-              5, 10, 15, 20, 15, 10, 5, 0, -5, -10, -15, -20, -15, -10, -5, 0,
-            ],
-            transition: { duration: 0.5, ease: "easeInOut" },
+          animate={controls}
+          whileHover={animationConfig}
+          onTapStart={() => {
+            controls.start(animationConfig);
           }}
         >
           <img src={wipImage}></img>
@@ -43,7 +49,7 @@ const Skill = (props: { skill: string; url: string }) => {
         alt=""
         className="skill-img"
         onClick={() => {
-          window.open(props.url, "_blank");
+          window.open(props.url, '_blank');
         }}
       />
     </div>
