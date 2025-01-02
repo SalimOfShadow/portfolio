@@ -12,6 +12,9 @@
   color: #c61b05;
 }
 
+.aqua {
+  color: #00ffff;
+}
 :root {
   --glow-color: hsl(219, 100%, 69%);
 }

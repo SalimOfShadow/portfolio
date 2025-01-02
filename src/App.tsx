@@ -143,7 +143,13 @@ function App() {
                   setTimeout(() => {
                     if (characterName === 'iori') {
                       setTimeout(() => setPfpAnimation('scratched'), 100);
-                      setTimeout(() => setPfpAnimation('idle'), 1300); // Makes it so it happens everytime kyo reappears
+                      setTimeout(() => setPfpAnimation('idle'), 1300);
+                    }
+                  }, 600);
+                  setTimeout(() => {
+                    if (characterName === 'kula') {
+                      setTimeout(() => setPfpAnimation('frozen'), 1);
+                      setTimeout(() => setPfpAnimation('idle'), 2100);
                     }
                   }, 600);
                 } else if (characterState === 'running-back')

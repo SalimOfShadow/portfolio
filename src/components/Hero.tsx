@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CharacterState } from '../contexts/CharacterContext';
-import profileAnimation from './animations/profile-picture/glow-effect.gif';
+import glowAnimation from './animations/profile-picture/glow-effect.gif';
+import frozenAnimation from './animations/profile-picture/frozen-effect.gif';
 import './animations/profile-picture/profile-animation.css';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import { changeTheme, useTheme } from '../contexts/ThemeContext';
@@ -66,7 +67,7 @@ const Hero = (props: HeroProps) => {
 
       case 'frozen':
         setPfpStatus('frozen');
-        setTimeout(() => setPfpStatus('idle'), 1400);
+        setTimeout(() => setPfpStatus('idle'), 1900);
         break;
 
       default:
@@ -121,6 +122,17 @@ const Hero = (props: HeroProps) => {
       },
       scale: 1,
     },
+    frozen: {
+      x: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 10, -5, 5, 0, -10, 10,
+        -5, 5, 0, 0, -10, 10, -5, 5, 0, -10, 10, -5, 5, 0, 0, -10, 10, -5, 5, 0,
+        -10, 10, -5, 5, 0,
+      ],
+      rotate: [currentRotation],
+      transition: { duration: 2.52, repeat: Infinity, ease: 'easeInOut' },
+      scale: [1, 1, , 1, 1.1, 1.1, 1],
+    },
   };
 
   return (
@@ -159,7 +171,7 @@ const Hero = (props: HeroProps) => {
             transition={{ duration: 0.8 }}
           >
             <img
-              src={profileAnimation}
+              src={glowAnimation}
               className="profile-glow-image"
               alt="Glow effect"
               style={{ opacity }}
@@ -171,6 +183,25 @@ const Hero = (props: HeroProps) => {
                   const newTheme = changeTheme(theme);
                   setTheme(newTheme);
                 }
+              }}
+            />
+          </motion.div>
+        )}
+        {pfpStatus === 'frozen' && (
+          <motion.div
+            key="frozen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <img
+              src={frozenAnimation}
+              className="profile-frozen-image"
+              alt="Frozen effect"
+              style={{ opacity: 1 }}
+              onClick={async () => {
+                return;
               }}
             />
           </motion.div>
