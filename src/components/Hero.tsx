@@ -52,15 +52,26 @@ const Hero = (props: HeroProps) => {
   }, [props.characterState]);
 
   useEffect(() => {
-    if (props.status === 'quake') {
-      setPfpStatus('quake');
-      setTimeout(() => setPfpStatus('idle'), 1400);
-    } else if (props.status === 'scratched') {
-      currentRotation -= 360;
-      setPfpStatus('scratched');
-      setTimeout(() => setPfpStatus('idle'), 1400);
-    } else {
-      setPfpStatus(props.status);
+    switch (props.status) {
+      case 'quake':
+        setPfpStatus('quake');
+        setTimeout(() => setPfpStatus('idle'), 1400);
+        break;
+
+      case 'scratched':
+        currentRotation -= 360;
+        setPfpStatus('scratched');
+        setTimeout(() => setPfpStatus('idle'), 1400);
+        break;
+
+      case 'frozen':
+        setPfpStatus('frozen');
+        setTimeout(() => setPfpStatus('idle'), 1400);
+        break;
+
+      default:
+        setPfpStatus(props.status);
+        break;
     }
   }, [props.status]);
 

@@ -86,7 +86,7 @@ export const Character: React.FC<CharacterProps> = ({
     if (characterState === 'neomax' && characterName === 'kula')
       setTimeout(() => {
         setCharacterState('standing');
-      }, 1100);
+      }, 1600);
 
     // Neomax to Final
     if (characterState === 'standing' && characterName !== 'kula') {
