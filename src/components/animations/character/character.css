@@ -30,16 +30,14 @@
 
 .kula-character {
   position: absolute;
-  right: -50px;
+  right: -50px; /* In case of Kula,we might need to have her closer to the pfp*/
   top: 2;
   width: 200px;
   max-width: 200px;
   height: 200px;
-  max-height: 200px;
+  max-height: 210px;
 }
 .kula-character-image {
-  width: 200px;
   max-width: 200px;
-  height: 200px;
-  max-height: 200px;
+  max-height: 210px;
 }

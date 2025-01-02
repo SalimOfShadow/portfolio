@@ -1,0 +1,11 @@
+.breath {
+  position: absolute;
+  z-index: 9999;
+  transform: translateY(40px);
+}
+
+.breath-img {
+  position: relative;
+  transform: translateX(110px);
+  z-index: 9999;
+}

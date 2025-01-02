@@ -132,6 +132,7 @@ function App() {
               onAnimationComplete={() => {
                 if (characterState === "running") {
                   setCharacterState("neomax");
+
                   setTimeout(() => {
                     if (characterName === "kyo") {
                       setExplosionsActive(true);

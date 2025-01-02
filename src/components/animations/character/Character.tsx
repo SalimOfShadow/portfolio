@@ -63,7 +63,6 @@ export const Character: React.FC<CharacterProps> = ({
     characterName: CharacterName,
     characterState: CharacterState
   ): string => {
-    // Use a fallback for invalid character states
     return gifs[characterName][characterState] || gifs[characterName].standing;
   };
 
@@ -89,7 +88,7 @@ export const Character: React.FC<CharacterProps> = ({
     if (characterState === "neomax" && characterName === "kula")
       setTimeout(() => {
         setCharacterState("standing");
-      }, 1850);
+      }, 1250);
   }, [characterState]);
 
   return (
@@ -128,6 +127,16 @@ export const Character: React.FC<CharacterProps> = ({
               characterState === "neomax" && {
                 width: "300px",
                 height: "230px",
+              }),
+            ...(characterName === "kula" &&
+              characterState === "final" && {
+                transform: "translateX(20px)",
+                height: "326px",
+              }),
+            ...(characterName === "kula" &&
+              characterState === "standing" && {
+                transform: "translateX(20px)",
+                height: "326px",
               }),
           }}
         />
