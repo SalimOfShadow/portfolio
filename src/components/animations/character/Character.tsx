@@ -12,12 +12,18 @@ import ioriRunningGif from "../../../assets/characters-gif/iori/test-iori-runnin
 import ioriStandingGif from "../../../assets/characters-gif/iori/test-iori-winpose.gif";
 import ioriNeomaxGif from "../../../assets/characters-gif/iori/iori-neomax.gif";
 import ioriFinalGif from "../../../assets/characters-gif/iori/test-iori-final.gif";
+// Kula
+import kulaRunningGif from "../../../assets/characters-gif/kula/test-kula-running.gif";
+import kulaStandingGif from "../../../assets/characters-gif/kula/test-kula-winpose.gif";
+import kulaNeomaxGif from "../../../assets/characters-gif/kula/kula-neomax.gif";
+import kulaFinalGif from "../../../assets/characters-gif/kula/test-kula-final.gif";
 
 import "./character.css";
 import { motion } from "framer-motion";
 import { Scratch } from "../iori/scratch/Scratch";
+import { Breath } from "../kula/breath/Breath";
 
-export type CharacterName = "kyo" | "iori";
+export type CharacterName = "kyo" | "iori" | "kula";
 
 interface CharacterProps {
   characterName: CharacterName;
@@ -30,6 +36,13 @@ export const Character: React.FC<CharacterProps> = ({
   characterName,
 }) => {
   const gifs: Record<CharacterName, Record<CharacterState, string>> = {
+    kyo: {
+      running: kyoRunningGif,
+      neomax: kyoNeomaxGif,
+      standing: kyoStandingGif,
+      final: kyoFinalGif,
+      "running-back": kyoRunningGif,
+    },
     iori: {
       running: ioriRunningGif,
       neomax: ioriNeomaxGif,
@@ -37,12 +50,12 @@ export const Character: React.FC<CharacterProps> = ({
       final: ioriFinalGif,
       "running-back": ioriRunningGif,
     },
-    kyo: {
-      running: kyoRunningGif,
-      neomax: kyoNeomaxGif,
-      standing: kyoStandingGif,
-      final: kyoFinalGif,
-      "running-back": kyoRunningGif,
+    kula: {
+      running: kulaRunningGif,
+      neomax: kulaNeomaxGif,
+      standing: kulaStandingGif,
+      final: kulaFinalGif,
+      "running-back": kulaRunningGif,
     },
   };
 
@@ -55,23 +68,28 @@ export const Character: React.FC<CharacterProps> = ({
   };
 
   useEffect(() => {
+    if (characterState === "standing")
+      setTimeout(() => {
+        setCharacterState("final");
+      }, 1200);
+
     // Kyo's timing
     if (characterState === "neomax" && characterName === "kyo")
       setTimeout(() => {
         setCharacterState("standing");
       }, 3200);
 
-    if (characterState === "standing")
-      setTimeout(() => {
-        setCharacterState("final");
-      }, 1200);
-
     // Iori's timing
-
     if (characterState === "neomax" && characterName === "iori")
       setTimeout(() => {
         setCharacterState("standing");
       }, 1850); // 11
+
+    // Kula's timing
+    if (characterState === "neomax" && characterName === "kula")
+      setTimeout(() => {
+        setCharacterState("standing");
+      }, 1850);
   }, [characterState]);
 
   return (
@@ -91,6 +109,11 @@ export const Character: React.FC<CharacterProps> = ({
       {/* Iori's effect */}
       {characterState === "neomax" && characterName === "iori" && (
         <Scratch animationState="active" />
+      )}
+
+      {/* Kula's effect */}
+      {characterState === "neomax" && characterName === "kula" && (
+        <Breath animationState="active" />
       )}
       <motion.div>
         <img
