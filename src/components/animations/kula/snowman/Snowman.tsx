@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import "./snowman.css";
-import snowmanImage from "./snowman.gif";
-import { motion } from "framer-motion";
-type SnowmanState = "active" | "inactive";
+import React, { useEffect, useState } from 'react';
+import './snowman.css';
+import snowmanImage from './snowman.gif';
+import { motion } from 'framer-motion';
+type SnowmanState = 'active' | 'inactive';
 
 type SnowmanProps = {
   animationState: SnowmanState;
 };
 
 export const Snowman = (props: SnowmanProps) => {
-  const [animationState, setAnimationState] = useState<SnowmanState>(
-    props.animationState
-  );
+  const [snowmanActive, setSnowmanActive] = useState<boolean>(false);
 
-  if (animationState === "active") {
-    setTimeout(() => {
-      setAnimationState("inactive");
-    }, 300);
-  }
+  useEffect(() => {
+    if (!snowmanActive) {
+      setTimeout(() => {
+        setSnowmanActive(true);
+      }, 300);
+    }
+  }, [snowmanActive]);
 
   return (
     <>
-      {animationState === "active" && (
+      {snowmanActive === true && (
         <div className="snowman">
           <motion.div>
             <img src={snowmanImage} alt="snowman" className="snowman-img" />

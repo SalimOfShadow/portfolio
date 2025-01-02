@@ -22,6 +22,7 @@ import './character.css';
 import { motion } from 'framer-motion';
 import { Scratch } from '../iori/scratch/Scratch';
 import { Breath } from '../kula/breath/Breath';
+import { Snowman } from '../kula/snowman/Snowman';
 
 export type CharacterName = 'kyo' | 'iori' | 'kula';
 
@@ -67,10 +68,7 @@ export const Character: React.FC<CharacterProps> = ({
   };
 
   useEffect(() => {
-    if (characterState === 'standing')
-      setTimeout(() => {
-        setCharacterState('final');
-      }, 1200);
+    // Neomax Timing
 
     // Kyo's timing
     if (characterState === 'neomax' && characterName === 'kyo')
@@ -88,7 +86,20 @@ export const Character: React.FC<CharacterProps> = ({
     if (characterState === 'neomax' && characterName === 'kula')
       setTimeout(() => {
         setCharacterState('standing');
-      }, 1250);
+      }, 1100);
+
+    // Neomax to Final
+    if (characterState === 'standing' && characterName !== 'kula') {
+      setTimeout(() => {
+        setCharacterState('final');
+      }, 1200);
+    } else if (characterState === 'standing' && characterName === 'kula') {
+      setTimeout(() => {
+        setTimeout(() => {
+          setCharacterState('final');
+        }, 1600);
+      });
+    }
   }, [characterState]);
 
   return (
@@ -114,6 +125,9 @@ export const Character: React.FC<CharacterProps> = ({
       {characterState === 'neomax' && characterName === 'kula' && (
         <Breath animationState="active" />
       )}
+      {characterState === 'standing' && characterName === 'kula' && (
+        <Snowman animationState="active" />
+      )}
       <motion.div>
         <img
           src={getGif(characterName, characterState)}
@@ -130,11 +144,6 @@ export const Character: React.FC<CharacterProps> = ({
               }),
             ...(characterName === 'kula' &&
               characterState === 'final' && {
-                transform: 'translateX(25px)',
-                height: '326px',
-              }),
-            ...(characterName === 'kula' &&
-              characterState === 'standing' && {
                 transform: 'translateX(25px)',
                 height: '326px',
               }),

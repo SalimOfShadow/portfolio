@@ -1,0 +1,12 @@
+.snowman {
+  position: absolute;
+  transform: translateY(15%);
+  z-index: 9999;
+}
+
+.snowman-img {
+  width: 100px;
+  position: relative;
+  transform: translateX(140px);
+  z-index: 9999;
+}
