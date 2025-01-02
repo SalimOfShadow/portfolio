@@ -9,6 +9,7 @@ import {
   themeStyles,
   useTheme,
 } from '../contexts/ThemeContext';
+import CharacterSelect from './CharacterSelect';
 
 const headerColors = {
   blue: '#1f2187',
@@ -36,6 +37,7 @@ const Navbar = (props) => {
           </a>
         </div>
         <input type="checkbox" id="menu-toggle" />
+        <CharacterSelect></CharacterSelect>
         <label htmlFor="menu-toggle" className="menu-icon">
           &#9776;
         </label>
@@ -50,7 +52,6 @@ const Navbar = (props) => {
           <li>
             <a href="#skills">Skills</a>
           </li>
-
           <li>
             <a
               href="#contact"

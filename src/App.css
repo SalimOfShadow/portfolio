@@ -562,6 +562,13 @@ form > input[type='submit']:hover {
   background-color: #0905f1;
   box-shadow: 0 8px 32px 0 rgba(33, 31, 135, 0.8);
 }
+
+.character-select-container {
+  position: absolute;
+  left: 50%; /* Move to the center of the parent */
+  transform: translateX(-50%); /* Adjust back by half its own width */
+}
+
 .wrapper {
   width: auto;
   margin-top: 30px;
