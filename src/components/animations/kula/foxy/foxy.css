@@ -1,0 +1,12 @@
+.foxy {
+  position: absolute;
+  transform: translateY(-25%);
+  z-index: 9999;
+}
+
+.foxy-img {
+  width: 270px;
+  position: relative;
+  transform: translateX(140px);
+  z-index: 9999;
+}

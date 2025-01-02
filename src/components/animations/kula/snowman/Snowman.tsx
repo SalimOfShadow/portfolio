@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './snowman.css';
-import snowmanImage from './snowman.gif';
-import { motion } from 'framer-motion';
-type SnowmanState = 'active' | 'inactive';
+import React, { useEffect, useState } from "react";
+import "./snowman.css";
+import snowmanImage from "./snowman.gif";
+import { motion } from "framer-motion";
+type SnowmanState = "active" | "inactive";
 
 type SnowmanProps = {
   animationState: SnowmanState;
