@@ -27,3 +27,19 @@
   width: 200px;
   height: 200px;
 }
+
+.kula-character {
+  position: absolute;
+  right: -50px;
+  top: 2;
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  max-height: 200px;
+}
+.kula-character-image {
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  max-height: 200px;
+}

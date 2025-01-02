@@ -110,8 +110,10 @@ function App() {
                 x:
                   characterState === "running-back"
                     ? pageDimensions.width / 2 -
-                      (characterName === "kyo" ? 300 : -300) // Center with offset based on character
-                    : characterName === "kyo"
+                      (characterName === "kyo" || characterName === "kula"
+                        ? 300
+                        : -300) // Center with offset based on character
+                    : characterName === "kyo" || characterName === "kula"
                     ? -300 // Off-screen left for Kyo
                     : pageDimensions.width + 300, // Off-screen right for Iori
               }}
@@ -122,7 +124,9 @@ function App() {
                       ? -300 // Back to off-screen left for Kyo
                       : pageDimensions.width + 300 // Back to off-screen right for Iori
                     : pageDimensions.width / 2 -
-                      (characterName === "kyo" ? 300 : -300), // Near-center position
+                      (characterName === "kyo" || characterName === "kula"
+                        ? 300
+                        : -300), // Near-center position
               }}
               transition={{ duration: 1.5 }}
               onAnimationComplete={() => {
@@ -170,7 +174,7 @@ function App() {
                   return {
                     position: "absolute",
                     top: 0,
-                    left: `${pageDimensions.width / 2 + 300}px`, // Set to final position when standing
+                    left: `${pageDimensions.width / 2 - 300}px`, // Set to final position when standing
                   };
                 } else {
                   return {};

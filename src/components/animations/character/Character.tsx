@@ -8,15 +8,15 @@ import kyoNeomaxGif from "../../../assets/characters-gif/kyo/kyo-neomax.gif";
 import kyoFinalGif from "../../../assets/characters-gif/kyo/kyo-final.gif";
 import { FireRing } from "../kyo/fire-ring/FireRing";
 // Iori
-import ioriRunningGif from "../../../assets/characters-gif/iori/test-iori-running.gif";
-import ioriStandingGif from "../../../assets/characters-gif/iori/test-iori-winpose.gif";
+import ioriRunningGif from "../../../assets/characters-gif/iori/iori-running.gif";
+import ioriStandingGif from "../../../assets/characters-gif/iori/iori-winpose.gif";
 import ioriNeomaxGif from "../../../assets/characters-gif/iori/iori-neomax.gif";
-import ioriFinalGif from "../../../assets/characters-gif/iori/test-iori-final.gif";
+import ioriFinalGif from "../../../assets/characters-gif/iori/iori-final.gif";
 // Kula
-import kulaRunningGif from "../../../assets/characters-gif/kula/test-kula-running.gif";
-import kulaStandingGif from "../../../assets/characters-gif/kula/test-kula-winpose.gif";
+import kulaRunningGif from "../../../assets/characters-gif/kula/kula-running.gif";
+import kulaStandingGif from "../../../assets/characters-gif/kula/kula-winpose.gif";
 import kulaNeomaxGif from "../../../assets/characters-gif/kula/kula-neomax.gif";
-import kulaFinalGif from "../../../assets/characters-gif/kula/test-kula-final.gif";
+import kulaFinalGif from "../../../assets/characters-gif/kula/kula-final.gif";
 
 import "./character.css";
 import { motion } from "framer-motion";
