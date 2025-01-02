@@ -161,7 +161,7 @@ const Hero = (props: HeroProps) => {
         }
         className="pfp"
       >
-        <img src={props.img} alt="" style={{ width: 150 }} />
+        <img src={props.img} alt="" style={{ width: 150 }} draggable="false" />
         {(canInteract || isPageMobile) && (
           <motion.div
             key="glow"
@@ -184,6 +184,7 @@ const Hero = (props: HeroProps) => {
                   setTheme(newTheme);
                 }
               }}
+              draggable="false"
             />
           </motion.div>
         )}
@@ -203,6 +204,7 @@ const Hero = (props: HeroProps) => {
               onClick={async () => {
                 return;
               }}
+              draggable="false"
             />
           </motion.div>
         )}

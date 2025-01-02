@@ -29,11 +29,12 @@ const HeroHeading = () => {
       case 'red':
         setCurrentColor('#c61b05');
         break;
+      case 'aqua':
+        setCurrentColor('#3ed1a3');
+
+        break;
       case 'yellow':
         setCurrentColor('yellow');
-        break;
-      case 'green':
-        setCurrentColor('green');
         break;
       default:
         setCurrentColor('#394cfa');

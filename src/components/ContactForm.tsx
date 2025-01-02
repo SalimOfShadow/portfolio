@@ -1,16 +1,16 @@
-import socials from "../content/socials";
-import { MdEmail } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
-import { IoLocation } from "react-icons/io5";
-import * as React from "react";
+import socials from '../content/socials';
+import { MdEmail } from 'react-icons/md';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { IoLocation } from 'react-icons/io5';
+import * as React from 'react';
 import {
   darkThemeStyles,
   themeShadows,
   themeStyles,
   useTheme,
-} from "../contexts/ThemeContext";
-import { color } from "framer-motion";
-import { useState } from "react";
+} from '../contexts/ThemeContext';
+import { color } from 'framer-motion';
+import { useState } from 'react';
 
 const ContactForm = () => {
   const { theme, setTheme } = useTheme();
@@ -23,7 +23,7 @@ const ContactForm = () => {
       >
         <h1>Let&apos;s talk about everything!</h1>
         <p>
-          Don&apos;t like forms? Send me an{" "}
+          Don&apos;t like forms? Send me an{' '}
           <a
             href="mailto:salimofshadowkof@gmail.com"
             style={{ color: themeStyles[theme] || undefined }}
@@ -40,18 +40,20 @@ const ContactForm = () => {
                 key={index}
                 style={{
                   boxShadow:
-                    theme === "blue"
+                    theme === 'blue'
                       ? `0 8px 32px 0 rgba(31, 41, 135, 0.37)` // Blue shadow for blue theme
-                      : `0 8px 32px 0 rgba(135, 41, 31, 0.37)`, // Red shadow for red theme
+                      : theme === 'red'
+                      ? `0 8px 32px 0 rgba(135, 41, 31, 0.37)` // Red shadow for red theme
+                      : `0 8px 32px 0 rgba(31, 135, 130, 0.37)`, // Aqua shadow for aqua theme
                 }}
               >
                 <img
                   src={`/socials/${social.icon}`}
                   alt=""
                   onClick={() => {
-                    window.open(social.url, "_blank");
+                    window.open(social.url, '_blank');
                   }}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 />
               </a>
             ))}

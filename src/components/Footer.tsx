@@ -15,7 +15,9 @@ const Footer = () => {
         marginTop: '20px',
       }}
     >
-      <p>Salim Of Shadow KOF</p>
+      <p>
+        Salim Of Shadow <span style={{ color: theme }}>KOF</span>
+      </p>
     </footer>
   );
 };

@@ -1,5 +1,5 @@
 // Define the types of themes
-export type Theme = 'blue' | 'red' | 'yellow' | 'green';
+export type Theme = 'blue' | 'red' | 'aqua' | 'yellow';
 
 // Interface for the context state
 interface ThemeContextState {
@@ -8,10 +8,11 @@ interface ThemeContextState {
 }
 
 // Default values for the context
-const themeArray: Theme[] = ['blue', 'red'];
+const themeArray: Theme[] = ['blue', 'red', 'aqua'];
 
 const defaultTheme: Theme =
-  themeArray[Math.floor(Math.random() * themeArray.length)];
+  // themeArray[Math.floor(Math.random() * themeArray.length)];
+  'aqua';
 
 const defaultState: ThemeContextState = {
   theme: defaultTheme,
@@ -21,22 +22,22 @@ const defaultState: ThemeContextState = {
 export const themeStyles = {
   blue: '#394cfa',
   red: '#fa3939',
-  green: 'green',
-  yellow: 'yellow',
+  aqua: '#00ffff', // Aqua color in light cyan
+  yellow: '#ffff00',
 };
 
 export const darkThemeStyles = {
-  blue: '0f5f94',
+  blue: '#0f5f94',
   red: '#a62525',
-  green: 'green',
-  yellow: 'yellow',
+  aqua: '#008b8b', // Darker shade of aqua (dark cyan)
+  yellow: '#9f9f00',
 };
 
 export const themeShadows = {
-  blue: '#1875df',
-  red: '#872f1f5e',
-  green: 'green',
-  yellow: 'yellow',
+  blue: 'rgba(24, 117, 223, 0.5)', // Adjusted for shadow effect
+  red: 'rgba(135, 47, 31, 0.5)',
+  aqua: 'rgba(0, 255, 255, 0.5)', // Aqua shadow with opacity
+  yellow: 'rgba(255, 255, 0, 0.5)',
 };
 
 // Create the Theme Context
@@ -69,6 +70,6 @@ export const useTheme = (): ThemeContextState => {
 };
 
 export function changeTheme(theme: Theme): Theme {
-  const themeArray: Theme[] = ['blue', 'red'];
+  const themeArray: Theme[] = ['blue', 'red', 'aqua'];
   return themeArray[(themeArray.indexOf(theme) + 1) % themeArray.length];
 }
