@@ -9,28 +9,34 @@ export type CharacterState =
   | "final"
   | "running-back";
 
+// Defining the possible character names
+export type CharacterName = "kyo" | "iori" | "kula";
+
 interface CharacterProviderProps {
   children: React.ReactNode;
 }
+
 // Create the CharacterContext
 const CharacterContext = createContext({
-  characterState: "standing" as CharacterState,
-  setCharacterState: (state: CharacterState) => {},
+  characterName: "kyo" as CharacterName,
+  setCharacterName: (name: CharacterName) => {},
 });
 
 // CharacterProvider Component
 const CharacterProvider: React.FC<CharacterProviderProps> = ({ children }) => {
-  const [characterState, setCharacterState] =
-    useState<CharacterState>("running");
+  const [characterName, setCharacterName] = useState<CharacterName>("kyo");
 
-  // Function to directly set the character state to a given value
-  const updateCharacterState = (newState: CharacterState) => {
-    setCharacterState(newState);
+  // Function to update the character name with validation
+  const updateCharacterName = (newName: CharacterName) => {
+    setCharacterName(newName);
   };
 
   return (
     <CharacterContext.Provider
-      value={{ characterState, setCharacterState: updateCharacterState }}
+      value={{
+        characterName,
+        setCharacterName: updateCharacterName,
+      }}
     >
       {children}
     </CharacterContext.Provider>

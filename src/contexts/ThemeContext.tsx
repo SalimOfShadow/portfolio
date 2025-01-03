@@ -1,5 +1,5 @@
 // Define the types of themes
-export type Theme = 'blue' | 'red' | 'aqua' | 'yellow';
+export type Theme = "blue" | "red" | "aqua" | "yellow";
 
 // Interface for the context state
 interface ThemeContextState {
@@ -8,11 +8,11 @@ interface ThemeContextState {
 }
 
 // Default values for the context
-const themeArray: Theme[] = ['blue', 'red', 'aqua'];
+const themeArray: Theme[] = ["blue", "red", "aqua"];
 
 const defaultTheme: Theme =
   // themeArray[Math.floor(Math.random() * themeArray.length)];
-  'aqua';
+  "aqua";
 
 const defaultState: ThemeContextState = {
   theme: defaultTheme,
@@ -20,28 +20,29 @@ const defaultState: ThemeContextState = {
 };
 
 export const themeStyles = {
-  blue: '#394cfa',
-  red: '#fa3939',
-  aqua: '#00ffff', // Aqua color in light cyan
-  yellow: '#ffff00',
+  blue: "#394cfa",
+  red: "#fa3939",
+  aqua: "#00ffff", // Aqua color in light cyan
+  yellow: "#ffff00",
 };
 
 export const darkThemeStyles = {
-  blue: '#0f5f94',
-  red: '#a62525',
-  aqua: '#008b8b', // Darker shade of aqua (dark cyan)
-  yellow: '#9f9f00',
+  blue: "#0f5f94",
+  red: "#a62525",
+  aqua: "#008b8b", // Darker shade of aqua (dark cyan)
+  yellow: "#9f9f00",
 };
 
 export const themeShadows = {
-  blue: 'rgba(24, 117, 223, 0.5)', // Adjusted for shadow effect
-  red: 'rgba(135, 47, 31, 0.5)',
-  aqua: 'rgba(0, 255, 255, 0.5)', // Aqua shadow with opacity
-  yellow: 'rgba(255, 255, 0, 0.5)',
+  blue: "rgba(24, 117, 223, 0.5)", // Adjusted for shadow effect
+  red: "rgba(135, 47, 31, 0.5)",
+  aqua: "rgba(0, 255, 255, 0.5)", // Aqua shadow with opacity
+  yellow: "rgba(255, 255, 0, 0.5)",
 };
 
 // Create the Theme Context
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { CharacterName } from "./CharacterContext";
 
 const ThemeContext = createContext<ThemeContextState>(defaultState);
 
@@ -64,12 +65,35 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 export const useTheme = (): ThemeContextState => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 };
 
-export function changeTheme(theme: Theme): Theme {
-  const themeArray: Theme[] = ['blue', 'red', 'aqua'];
-  return themeArray[(themeArray.indexOf(theme) + 1) % themeArray.length];
+export function changeTheme(character?: CharacterName, theme?: Theme): Theme {
+  const themeArray: Theme[] = ["blue", "red", "aqua"];
+  if (character && !theme) {
+    console.log(
+      `character but not theme,about to change 
+      `
+    );
+    switch (character) {
+      case "kyo": {
+        return themeArray[themeArray.indexOf("blue")];
+      }
+      case "iori": {
+        return themeArray[themeArray.indexOf("red")];
+      }
+      case "kula": {
+        return themeArray[themeArray.indexOf("aqua")];
+      }
+    }
+  } else {
+    if (theme) {
+      const themeArray: Theme[] = ["blue", "red", "aqua"];
+      return themeArray[(themeArray.indexOf(theme) + 1) % themeArray.length];
+    } else {
+      return themeArray[0];
+    }
+  }
 }
