@@ -8,7 +8,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import './character-select.css';
 import { CharacterName } from '../animations/character/Character';
 import { useState, useEffect } from 'react';
-import { CharacterState } from '../../contexts/CharacterContext';
+import { CharacterState, useCharacter } from '../../contexts/CharacterContext';
 
 const avatars = [
   { character: 'kyo', theme: 'blue', src: kyoAvatar },
@@ -18,12 +18,11 @@ const avatars = [
 
 const CharacterSelect = (props: {
   changeCharacterFunction: (characterName: CharacterName) => void;
-  characterState: CharacterState;
 }) => {
   const { theme } = useTheme();
 
   const [canSwitchCharacter, setCanSwitchCharacter] = useState<boolean>(false);
-
+  const { characterName, setCharacterName, characterState } = useCharacter();
   const [currentCharacter, setCurrentCharacter] = useState<CharacterName>(
     avatars.find((avatar) => avatar.theme === theme)?.character as CharacterName // Default to 'kyo' if no match
   );
@@ -31,12 +30,12 @@ const CharacterSelect = (props: {
   const [hoveredAvatar, setHoveredAvatar] = useState<string | null>(null); // Track hovered avatar
 
   useEffect(() => {
-    if (props.characterState === 'final') {
+    if (characterState === 'final') {
       setCanSwitchCharacter(true);
     } else {
       setCanSwitchCharacter(false);
     }
-  }, [props.characterState]); // Add dependency here
+  }, [characterState]); // Add dependency here
 
   useEffect(() => {
     const newCharacter: CharacterName = avatars.find(

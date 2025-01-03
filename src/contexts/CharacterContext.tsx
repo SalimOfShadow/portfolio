@@ -20,15 +20,23 @@ interface CharacterProviderProps {
 const CharacterContext = createContext({
   characterName: 'kyo' as CharacterName,
   setCharacterName: (name: CharacterName) => {},
+  characterState: 'running' as CharacterState,
+  setCharacterState: (state: CharacterState) => {},
 });
 
 // CharacterProvider Component
 const CharacterProvider: React.FC<CharacterProviderProps> = ({ children }) => {
   const [characterName, setCharacterName] = useState<CharacterName>('kyo');
-
+  const [characterState, setCharacterState] =
+    useState<CharacterState>('running');
   // Function to update the character name with validation
   const updateCharacterName = (newName: CharacterName) => {
+    console.log(`OLD NAME = ${characterName}`);
+    console.log(`NEW NAME = ${newName}`);
     setCharacterName(newName);
+  };
+  const updateCharacterState = (newState: CharacterState) => {
+    setCharacterState(newState);
   };
 
   return (
@@ -36,6 +44,8 @@ const CharacterProvider: React.FC<CharacterProviderProps> = ({ children }) => {
       value={{
         characterName,
         setCharacterName: updateCharacterName,
+        characterState,
+        setCharacterState: updateCharacterState,
       }}
     >
       {children}

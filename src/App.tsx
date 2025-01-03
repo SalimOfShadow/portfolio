@@ -20,7 +20,7 @@ import {
   CharacterName,
 } from './components/animations/character/Character';
 import useWindowDimensions from './hooks/useWindowDimensions';
-import { CharacterState } from './contexts/CharacterContext';
+import { CharacterState, useCharacter } from './contexts/CharacterContext';
 import profilePicture from './assets/profile-picture.png';
 import { Explosion } from './components/animations/kyo/explosion/Explosion';
 import { changeTheme, useTheme } from './contexts/ThemeContext';
@@ -34,10 +34,9 @@ function App() {
   const [ref, inView] = useInView({ triggerOnce: true });
   const pageDimensions: { width: number; height: number } =
     useWindowDimensions();
-  const [characterState, setCharacterState] =
-    useState<CharacterState>('running');
+  const { characterState, setCharacterState, characterName, setCharacterName } =
+    useCharacter();
   const [characterPresent, setCharacterPresent] = useState<boolean>(false);
-  const [characterName, setCharacterName] = useState<CharacterName>('kyo');
   const [explosions, setExplosions] = useState<React.ReactNode[]>([]);
   const [explosionsActive, setExplosionsActive] = useState<boolean>(false);
   const [pfpAnimation, setPfpAnimation] = useState<PfpAnimation>('idle');
@@ -178,11 +177,7 @@ function App() {
                   setCharacterPresent(false);
               }}
             >
-              <Character
-                characterState={characterState}
-                setCharacterState={setCharacterState}
-                characterName={characterName}
-              />
+              <Character />
             </motion.div>
           ) : (
             <div
@@ -210,11 +205,7 @@ function App() {
                 }
               })()}
             >
-              <Character
-                characterState={characterState}
-                setCharacterState={setCharacterState}
-                characterName={characterName}
-              ></Character>
+              <Character />
             </div>
           )}
         </div>

@@ -45,7 +45,6 @@ const Navbar = (props: {
         <input type="checkbox" id="menu-toggle" />
         <CharacterSelect
           changeCharacterFunction={props.changeCharacter}
-          characterState={props.characterState}
         ></CharacterSelect>
         <label htmlFor="menu-toggle" className="menu-icon">
           &#9776;

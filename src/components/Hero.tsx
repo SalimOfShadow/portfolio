@@ -180,7 +180,7 @@ const Hero = (props: HeroProps) => {
                   const wait = (ms: number | undefined) =>
                     new Promise((resolve) => setTimeout(resolve, ms));
                   await wait(200);
-                  const newTheme = changeTheme(theme);
+                  const newTheme = changeTheme(undefined, theme);
                   setTheme(newTheme);
                 }
               }}
