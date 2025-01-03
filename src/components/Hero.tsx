@@ -36,7 +36,6 @@ const Hero = (props: HeroProps) => {
     } else {
       setIsPageMobile(false);
     }
-    console.log(isPageMobile);
   }, [pageDimensions.width]);
 
   useEffect(() => {

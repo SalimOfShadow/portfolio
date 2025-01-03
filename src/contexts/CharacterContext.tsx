@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, createContext, useContext } from 'react';
+import { useCookies } from 'react-cookie';
 
 // Defining the possible character states
 export type CharacterState =
@@ -11,6 +12,8 @@ export type CharacterState =
 
 // Defining the possible character names
 export type CharacterName = 'kyo' | 'iori' | 'kula';
+
+const characterArray: CharacterName[] = ['kyo', 'iori', 'kula'];
 
 interface CharacterProviderProps {
   children: React.ReactNode;
@@ -26,14 +29,20 @@ const CharacterContext = createContext({
 
 // CharacterProvider Component
 const CharacterProvider: React.FC<CharacterProviderProps> = ({ children }) => {
+  const [cookies, setCookie] = useCookies(['character']);
+  const [theme, setTheme] = useState<CharacterName>(
+    characterArray[
+      (characterArray.indexOf(cookies.character) + 1) % characterArray.length
+    ] || 'kyo'
+  );
   const [characterName, setCharacterName] = useState<CharacterName>('kyo');
   const [characterState, setCharacterState] =
     useState<CharacterState>('running');
   // Function to update the character name with validation
+
   const updateCharacterName = (newName: CharacterName) => {
-    console.log(`OLD NAME = ${characterName}`);
-    console.log(`NEW NAME = ${newName}`);
     setCharacterName(newName);
+    setCookie('character', newName, { path: '/' }); // TODO - FIX THIS
   };
   const updateCharacterState = (newState: CharacterState) => {
     setCharacterState(newState);

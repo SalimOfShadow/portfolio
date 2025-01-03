@@ -41,7 +41,6 @@ const CharacterSelect = (props: {
     const newCharacter: CharacterName = avatars.find(
       (avatar) => avatar.theme === theme
     )?.character as CharacterName;
-    console.log(`Setting character: ${newCharacter}`);
     setCurrentCharacter(newCharacter); // Set the character based on the theme change
   }, [theme]); // Re-run whenever the theme changes
 
@@ -65,7 +64,7 @@ const CharacterSelect = (props: {
     <div className="character-select-container">
       {avatars.map((avatar) => (
         <motion.div
-          key={avatar.character} // Add key here
+          key={(Date.now() % 1000) + avatar.character}
           whileTap={
             canSwitchCharacter && avatar.character !== currentCharacter
               ? {

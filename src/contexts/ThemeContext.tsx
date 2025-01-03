@@ -1,3 +1,4 @@
+import { CookiesProvider, useCookies } from 'react-cookie';
 // Define the types of themes
 export type Theme = 'blue' | 'red' | 'aqua' | 'yellow';
 
@@ -11,7 +12,6 @@ interface ThemeContextState {
 const themeArray: Theme[] = ['blue', 'red', 'aqua'];
 
 const defaultTheme: Theme = 'blue';
-
 const defaultState: ThemeContextState = {
   theme: defaultTheme,
   setTheme: () => {}, // Placeholder function
@@ -39,7 +39,13 @@ export const themeShadows = {
 };
 
 // Create the Theme Context
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from 'react';
 import { CharacterName } from './CharacterContext';
 
 const ThemeContext = createContext<ThemeContextState>(defaultState);
@@ -50,7 +56,17 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  // cookies.theme we can access the cookie like this,and select the next possible theme
+  const [cookies, setCookie] = useCookies(['theme']);
+  const [theme, setTheme] = useState<Theme>(
+    themeArray[(themeArray.indexOf(cookies.theme) + 1) % themeArray.length] ||
+      'blue'
+  );
+
+  useEffect(() => {
+    console.log('Setting the cookie');
+    setCookie('theme', theme, { path: '/' });
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -71,10 +87,6 @@ export const useTheme = (): ThemeContextState => {
 export function changeTheme(character?: CharacterName, theme?: Theme): Theme {
   const themeArray: Theme[] = ['blue', 'red', 'aqua'];
   if (character && !theme) {
-    console.log(
-      `character but not theme,about to change 
-      `
-    );
     switch (character) {
       case 'kyo': {
         return themeArray[themeArray.indexOf('blue')];
